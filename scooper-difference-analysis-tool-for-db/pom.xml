@@ -1,0 +1,193 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cn.showclear</groupId>
+	<artifactId>scooper-difference-analysis-tool-for-db</artifactId>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>scooper-difference-analysis-tool-for-db Maven Webapp</name>
+	<url>http://www.scooper.com.cn</url>
+
+	<properties>
+		<maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
+		<build.version>${project.version}</build.version>
+		<build.timestamp>${maven.build.timestamp}</build.timestamp>
+		
+		<slf4j.version>1.7.21</slf4j.version>
+		<spring.version>4.3.12.RELEASE</spring.version>
+		<aspectj.version>1.8.12</aspectj.version>
+		<jackson.version>2.9.1</jackson.version>
+		
+		<scooper.common.version>1.0.24</scooper.common.version>
+		
+		<junit.version>4.12</junit.version>
+	</properties>
+
+	<dependencies>
+		<!-- Servlet API -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- SCOOPER 通用库 -->
+		<dependency>
+			<groupId>cn.com.scooper.common</groupId>
+			<artifactId>scooper-common</artifactId>
+			<version>${scooper.common.version}</version>
+		</dependency>
+		
+		<!-- Spring 相关依赖包 (v4.3.12) -->
+		<dependency>
+			<groupId>cn.com.scooper</groupId>
+			<artifactId>scooper-springweb</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<!-- TEST START -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- TEST END -->
+
+		<!-- 拼音工具 -->
+		<dependency>
+			<groupId>com.belerweb</groupId>
+			<artifactId>pinyin4j</artifactId>
+			<version>2.5.1</version>
+		</dependency>
+
+		<!-- jstl -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+			<scope>runtime</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>scooper-difference-analysis-tool-for-db</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<executions>
+					<execution>
+						<phase>initialize</phase>
+						<goals>
+							<goal>read-project-properties</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<files>
+						<file>${basedir}/project.properties</file>
+					</files>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>prepare-package</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<!-- 输出 version.txt -->
+							<target>
+								<property name="release.version.file"
+									value="${project.basedir}/target/${project.artifactId}/version.txt" />
+								<echo message="${release.version}" file="${release.version.file}" />
+							</target>
+						</configuration>
+					</execution>
+					<execution>
+						<id>publish</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<!-- 打发布包 -->
+							<target>
+								<echo
+									message="*******************************************************************" />
+								<echo message="* ${project.artifactId} ${release.version}" />
+								<echo message="* ${maven.build.timestamp}" />
+								<echo
+									message="*******************************************************************" />
+
+								<property name="target.dir" value="${project.build.directory}" />
+								<property name="package.dir" value="${target.dir}/pre_package" />
+								<property name="package.name"
+									value="${project.artifactId}_${release.version}" />
+
+								<property name="resource.dir" value="${project.basedir}/src/main/resources" />
+
+								<mkdir dir="${package.dir}" />
+								<copy file="${target.dir}/${project.artifactId}.war" toDir="${package.dir}"
+									overwrite="true" />
+								<copy toDir="${package.dir}" overwrite="true">
+									<fileset dir="${project.basedir}/docs">
+										<include name="README.md" />
+										<include name="CHANGELOG.md" />
+									</fileset>
+									<fileset dir="${project.basedir}/resources">
+										<include name="conf_template/**" />
+										<include name="sql/**" />
+										<include name="thirdpart/**" />
+									</fileset>
+								</copy>
+
+								<tar destfile="${target.dir}/${package.name}.tar">
+									<tarfileset dir="${package.dir}">
+										<include name="**" />
+									</tarfileset>
+								</tar>
+								<gzip destfile="${target.dir}/${package.name}.tgz" src="${target.dir}/${package.name}.tar" />
+								<delete file="${target.dir}/${package.name}.tar" />
+
+								<mkdir dir="${publish.dir}/${project.version}" />
+								<copy file="${target.dir}/${package.name}.tgz" toDir="${publish.dir}/${project.version}"
+									overwrite="true" />
+
+								<echo
+									message="publish to : ${publish.dir}/${project.version}/${package.name}.tgz" />
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- 使用 Maven 启动 运行/调试 项目（JDK8+） -->
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.4.8.v20171121</version>
+				<configuration>
+					<webApp>
+						<contextPath>/scooper-difference-analysis-tool-for-db</contextPath>
+					</webApp>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
