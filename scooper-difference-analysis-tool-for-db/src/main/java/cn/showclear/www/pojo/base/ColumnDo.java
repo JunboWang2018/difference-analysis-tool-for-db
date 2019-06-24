@@ -11,7 +11,6 @@ public class ColumnDo {
     private Long ordinalPosition;
     private String columnDefault;
     private String isNullable;
-    private String characterSetName;
     private String columnType;
     private String extra;
     private String columnComment;
@@ -56,14 +55,6 @@ public class ColumnDo {
         this.isNullable = isNullable;
     }
 
-    public String getCharacterSetName() {
-        return characterSetName;
-    }
-
-    public void setCharacterSetName(String characterSetName) {
-        this.characterSetName = characterSetName;
-    }
-
     public String getColumnType() {
         return columnType;
     }
@@ -96,7 +87,6 @@ public class ColumnDo {
                 ", ordinalPosition=" + ordinalPosition +
                 ", columnDefault='" + columnDefault + '\'' +
                 ", isNullable='" + isNullable + '\'' +
-                ", characterSetName='" + characterSetName + '\'' +
                 ", columnType='" + columnType + '\'' +
                 ", extra='" + extra + '\'' +
                 ", columnComment='" + columnComment + '\'' +

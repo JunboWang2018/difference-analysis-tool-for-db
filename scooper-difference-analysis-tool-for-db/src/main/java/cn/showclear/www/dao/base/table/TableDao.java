@@ -3,7 +3,6 @@ package cn.showclear.www.dao.base.table;
 import cn.showclear.www.pojo.base.ColumnDo;
 import cn.showclear.www.pojo.base.TableDo;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;

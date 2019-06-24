@@ -71,7 +71,7 @@ public class TableDaoImpl implements TableDao {
     @Override
     public List<ColumnDo> getDBColumnInfo(String databaseName, String tableName) throws SQLException {
         List<ColumnDo> columnDoList = new ArrayList<ColumnDo>();
-        String sql = "SELECT COLUMN_NAME, ORDINAL_POSITION, COLUMN_DEFAULT, IS_NULLABLE, CHARACTER_SET_NAME, " +
+        String sql = "SELECT COLUMN_NAME, ORDINAL_POSITION, COLUMN_DEFAULT, IS_NULLABLE, " +
                 "COLUMN_TYPE, EXTRA, COLUMN_COMMENT FROM COLUMNS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ?";
         //获得information_schema数据库的连接，information_schema数据库存放了表结构和列信息
         Connection conn = dbConnectUtil.getConnecttion(CommonConstant.IS_DB_DATASOURCE_NAME);
@@ -86,7 +86,6 @@ public class TableDaoImpl implements TableDao {
             columnDo.setOrdinalPosition(rs.getLong("ORDINAL_POSITION"));
             columnDo.setColumnDefault(rs.getString("COLUMN_DEFAULT"));
             columnDo.setIsNullable(rs.getString("IS_NULLABLE"));
-            columnDo.setCharacterSetName(rs.getString("CHARACTER_SET_NAME"));
             columnDo.setColumnType(rs.getString("COLUMN_TYPE"));
             columnDo.setExtra(rs.getString("EXTRA"));
             columnDo.setColumnComment(rs.getString("COLUMN_COMMENT"));
@@ -240,7 +239,7 @@ public class TableDaoImpl implements TableDao {
         for (Object prop : propSet) {
             if (prop.toString().contains("tableName")) {
                 TableDo tableDo = new TableDo();
-                String tableName = prop.toString();
+                String tableName = properties.getProperty(prop.toString());
                 tableDo.setTableName(tableName);
                 String createTime = properties.getProperty(tableName + ".createTime");
                 tableDo.setCreateTime(Long.parseLong(createTime));

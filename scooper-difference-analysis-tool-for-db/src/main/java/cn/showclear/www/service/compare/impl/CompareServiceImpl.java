@@ -8,6 +8,7 @@ import cn.showclear.www.pojo.base.ColumnDo;
 import cn.showclear.www.pojo.base.TableDo;
 import cn.showclear.www.pojo.common.Message;
 import cn.showclear.www.service.compare.CompareService;
+import cn.showclear.www.service.sql.GenerateSQLService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,10 @@ public class CompareServiceImpl implements CompareService {
     @Autowired
     private PropertiesFactoryBean propFactory; //配置文件信息
 
-    private StringBuilder sql = new StringBuilder();
+    @Autowired
+    private GenerateSQLService generateSQLService;
+
+    private StringBuilder updateSQL = new StringBuilder();
 
     /**
      * 比较数据库信息
@@ -49,7 +53,14 @@ public class CompareServiceImpl implements CompareService {
      */
     @Override
     public Message compareDBInfo() {
-        return null;
+        try {
+            this.compareTableInfo();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new Message(CommonConstant.SUCCESS_CODE, "成功");
     }
 
     /**
@@ -62,7 +73,7 @@ public class CompareServiceImpl implements CompareService {
     }
 
     /**
-     * 比较表信息，在有更新的表中检查是否有更新字段，并返回有更新的表
+     * 比较表信息，在有更新的表中检查是否有更新字段。若有，添加SQL，并返回有更新的表
      * @return
      * @throws SQLException
      * @throws IOException
@@ -96,7 +107,7 @@ public class CompareServiceImpl implements CompareService {
         }
         //在有更新的表中检查是否有新增字段
         String columnSQL = this.compareColumnInfo(modifiedTables);
-        sql.append(columnSQL);
+        updateSQL.append(columnSQL);
         return modifiedTables;
     }
 
@@ -105,10 +116,10 @@ public class CompareServiceImpl implements CompareService {
      * @param modifiedTables
      */
     private String compareColumnInfo(List<String> modifiedTables) throws IOException, SQLException {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder addColsSQL = new StringBuilder();
         Properties properties = propFactory.getObject();
-        String mainDBName = properties.getProperty("mainDB");
-        String supDBName = properties.getProperty("supDB");
+        String mainDBName = properties.getProperty("mainDB.dbname");
+        String supDBName = properties.getProperty("supDB.dbname");
         for (int i = 0; i < modifiedTables.size(); i++) {
             List<ColumnDo> mainDBCols = tableDao.getDBColumnInfo(mainDBName, modifiedTables.get(i));
             List<ColumnDo> supDBCols = tableDao.getDBColumnInfo(supDBName, modifiedTables.get(i));
@@ -121,19 +132,34 @@ public class CompareServiceImpl implements CompareService {
                 }
                 if (!flag) {
                     //没有该字段，生成SQL
-
+                    String addColSQL = generateSQLService.generateAddColumnSQL(mainDBCol);
+                    addColsSQL.append(addColSQL);
                 }
             }
         }
-        return sb.toString();
+        return addColsSQL.toString();
     }
 
     /**
      * 比较有更新表中的数据差异
      * @param modifiedTables
      */
-    private void compareDataInfo(List<String> modifiedTables) {
+    private void compareDataInfo(List<String> modifiedTables) throws IOException, SQLException {
+        Properties properties = propFactory.getObject();
+        String mainDBName = properties.getProperty("mainDB.dbname");
+        String supDBName = properties.getProperty("supDB.dbname");
+        for (int i = 0; i < modifiedTables.size(); i++) {
+            //获取列信息
+            List<ColumnDo> mainDBCols = tableDao.getDBColumnInfo(mainDBName, modifiedTables.get(i));
+            List<ColumnDo> supDBCols = tableDao.getDBColumnInfo(supDBName, modifiedTables.get(i));
+            List<String[]> mainDBDatas = dataDao.getDataList(mainDBCols, CommonConstant.MAIN_DB_DATASOURCE_NAME);
+            List<String[]> supDBDatas = dataDao.getDataList(supDBCols, CommonConstant.SUP_DB_DATASOURCE_NAME);
+            //若该表在两个数据库中都没有数据，则此表没有数据更新
+            if (mainDBDatas.size() == 0 && supDBDatas.size() == 0) {
+                continue;
+            }
 
+        }
     }
 
 }

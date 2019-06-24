@@ -70,7 +70,7 @@ public class InitServiceImpl implements InitService {
             LOGGER.error("读取数据库配置信息失败！");
             return new Message(CommonConstant.FAILED_CODE, "读取数据库配置信息失败！");
         }
-        String backupDBName = properties.getProperty("supDB.dbname");
+        String backupDBName = properties.getProperty("mainDB.dbname");
         try {
             tableDoList = tableDao.getDBTableInfo(backupDBName);
         } catch (SQLException e) {

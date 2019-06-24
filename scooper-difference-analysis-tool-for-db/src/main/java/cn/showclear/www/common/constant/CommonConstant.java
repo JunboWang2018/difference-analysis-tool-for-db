@@ -36,5 +36,8 @@ public final class CommonConstant {
     //方法返回结果码常量
     public static final int SUCCESS_CODE = 1;
     public static final int FAILED_CODE = 1000;
-    
+
+    //数据库常量
+    public static final String NOT_NULLABLE = "NO";
+    public static final String AUTO_INCREMENT = "auto_increment";
 }
