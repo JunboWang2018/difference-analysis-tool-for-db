@@ -1,5 +1,6 @@
 package cn.showclear.www.service.sql.impl;
 
+import cn.com.scooper.common.exception.BusinessException;
 import cn.showclear.www.common.constant.CommonConstant;
 import cn.showclear.www.pojo.base.ColumnDo;
 import cn.showclear.www.service.sql.GenerateSQLService;
@@ -73,6 +74,7 @@ public class GenerateSQLServiceImpl implements GenerateSQLService {
     @Override
     public String generateAddRecordSQL(String tableName, List<ColumnDo> columns, String[] data) {
         StringBuilder sbSQL = new StringBuilder();
+        //按ordinal position排序，使之与data数组数据顺序对应
         columns.sort(new Comparator<ColumnDo>() {
             @Override
             public int compare(ColumnDo o1, ColumnDo o2) {
@@ -125,20 +127,57 @@ public class GenerateSQLServiceImpl implements GenerateSQLService {
      */
     @Override
     public String generateUpdateRecordSQL(String tableName, List<ColumnDo> columns, String[] data) {
-
-        return null;
+        //寻找主键字段和位置
+        int priColIndex = Integer.MAX_VALUE;
+        String priColName = null;
+        StringBuilder sbSQL = new StringBuilder();
+        for (ColumnDo column : columns) {
+            if (column.getColumnKey().equalsIgnoreCase("PRI")) {
+                priColIndex = column.getOrdinalPosition().intValue();
+                priColName = column.getColumnName();
+            }
+        }
+        sbSQL.append("UPDATE ").append(tableName).append(" SET ");
+        for (int i = 0; i < columns.size(); i++) {
+            if (!columns.get(i).getColumnKey().equalsIgnoreCase("PRI")) {
+                if (i != columns.size() - 1) {
+                    sbSQL.append(columns.get(i).getColumnName()).append(" = ").append(data[columns.get(i).getOrdinalPosition().intValue()]).append(",");
+                } else {
+                    sbSQL.append(columns.get(i).getColumnName()).append(" = ").append(data[columns.get(i).getOrdinalPosition().intValue()]);
+                }
+            }
+        }
+        sbSQL.append(" WHERE ").append(priColName).append(" = '").append(data[priColIndex]).append("';");
+        return sbSQL.toString();
     }
 
     /**
      * 生成删除数据SQL语句
+     *  1. 从column信息中查询主键位置
+     *  2. 取出主键数据
+     *  3. 删除数据
      * @param tableName
      * @param columns
      * @param data
      * @return
      */
     @Override
-    public String generateDeleteRecordSQL(String tableName, List<ColumnDo> columns, String[] data) {
-        return null;
+    public String generateDeleteRecordSQL(String tableName, List<ColumnDo> columns, String[] data) throws BusinessException {
+        //寻找主键字段和位置
+        int priColIndex = Integer.MAX_VALUE;
+        String priColName = null;
+        StringBuilder sbSQL = new StringBuilder();
+        for (ColumnDo column : columns) {
+            if (column.getColumnKey().equalsIgnoreCase("PRI")) {
+                priColIndex = column.getOrdinalPosition().intValue();
+                priColName = column.getColumnName();
+            }
+        }
+        if (priColIndex == Integer.MAX_VALUE || StringUtils.isEmpty(priColName)) {
+            throw new BusinessException(CommonConstant.FAILED_CODE, "没有找到" + tableName + "表的主键！");
+        }
+        sbSQL.append("DELETE FROM ").append(tableName).append(" WHERE ").append(priColName).append(" = '").append(data[priColIndex]).append("';");
+        return sbSQL.toString();
     }
 
 

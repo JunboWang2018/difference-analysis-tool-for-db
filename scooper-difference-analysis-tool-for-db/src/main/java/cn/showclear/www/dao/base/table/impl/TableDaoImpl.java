@@ -37,7 +37,7 @@ public class TableDaoImpl implements TableDao {
     @Override
     public List<TableDo> getDBTableInfo(String databaseName) throws SQLException {
         List<TableDo> tableDoList = new ArrayList<TableDo>();
-        String sql = "SELECT TABLE_NAME, ENGINE, CREATE_TIME, UPDATE_TIME, TABLE_COMMENT FROM TABLES WHERE TABLE_SCHEMA = ?";
+        String sql = "SELECT TABLE_NAME, AUTO_INCREMENT FROM TABLES WHERE TABLE_SCHEMA = ?";
         //获得information_schema数据库的连接，information_schema数据库存放了表结构和列信息
         Connection conn = dbConnectUtil.getConnecttion(CommonConstant.IS_DB_DATASOURCE_NAME);
         PreparedStatement prepStmt = conn.prepareStatement(sql);
@@ -46,16 +46,10 @@ public class TableDaoImpl implements TableDao {
         while (rs.next()) {
             TableDo tableDo = new TableDo();
             tableDo.setTableName(rs.getString("TABLE_NAME"));
-            tableDo.setCreateTime(rs.getTimestamp("CREATE_TIME").getTime());
-            Timestamp updateTime = rs.getTimestamp("UPDATE_TIME");
-            if (updateTime == null) {
-                //处理update time为空的情况
-                tableDo.setUpdateTime(Long.valueOf(0));
-            } else {
-                tableDo.setUpdateTime(updateTime.getTime());
+            tableDo.setAutoIncrement(rs.getInt("AUTO_INCREMENT"));
+            if (tableDo.getAutoIncrement() == null) {
+                LOGGER.error("自增字段为空！");
             }
-            tableDo.setEngine(rs.getString("ENGINE"));
-            tableDo.setTableComment(rs.getString("TABLE_COMMENT"));
             tableDoList.add(tableDo);
         }
         dbConnectUtil.releaseConnect(conn, prepStmt, rs);
@@ -72,7 +66,7 @@ public class TableDaoImpl implements TableDao {
     public List<ColumnDo> getDBColumnInfo(String databaseName, String tableName) throws SQLException {
         List<ColumnDo> columnDoList = new ArrayList<ColumnDo>();
         String sql = "SELECT COLUMN_NAME, ORDINAL_POSITION, COLUMN_DEFAULT, IS_NULLABLE, " +
-                "COLUMN_TYPE, EXTRA, COLUMN_COMMENT FROM COLUMNS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ?";
+                "COLUMN_TYPE, COLUMN_KEY, EXTRA, COLUMN_COMMENT FROM COLUMNS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ?";
         //获得information_schema数据库的连接，information_schema数据库存放了表结构和列信息
         Connection conn = dbConnectUtil.getConnecttion(CommonConstant.IS_DB_DATASOURCE_NAME);
         PreparedStatement prepStmt = conn.prepareStatement(sql);
@@ -87,6 +81,7 @@ public class TableDaoImpl implements TableDao {
             columnDo.setColumnDefault(rs.getString("COLUMN_DEFAULT"));
             columnDo.setIsNullable(rs.getString("IS_NULLABLE"));
             columnDo.setColumnType(rs.getString("COLUMN_TYPE"));
+            columnDo.setColumnKey(rs.getString("COLUMN_KEY"));
             columnDo.setExtra(rs.getString("EXTRA"));
             columnDo.setColumnComment(rs.getString("COLUMN_COMMENT"));
             columnDoList.add(columnDo);

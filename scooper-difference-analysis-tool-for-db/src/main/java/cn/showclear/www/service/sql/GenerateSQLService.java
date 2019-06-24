@@ -1,5 +1,6 @@
 package cn.showclear.www.service.sql;
 
+import cn.com.scooper.common.exception.BusinessException;
 import cn.showclear.www.pojo.base.ColumnDo;
 
 import java.util.List;
@@ -34,6 +35,6 @@ public interface GenerateSQLService {
      * @param data
      * @return
      */
-    String generateDeleteRecordSQL(String tableName, List<ColumnDo> columns, String[] data);
+    String generateDeleteRecordSQL(String tableName, List<ColumnDo> columns, String[] data) throws BusinessException;
 
 }

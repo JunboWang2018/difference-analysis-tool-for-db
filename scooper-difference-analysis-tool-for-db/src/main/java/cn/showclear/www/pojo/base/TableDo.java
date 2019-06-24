@@ -7,10 +7,7 @@ package cn.showclear.www.pojo.base;
  */
 public class TableDo {
     private String tableName;
-    private Long createTime;
-    private Long updateTime;
-    private String engine;
-    private String tableComment;
+    private Integer autoIncrement;
 
     public String getTableName() {
         return tableName;
@@ -20,47 +17,19 @@ public class TableDo {
         this.tableName = tableName;
     }
 
-    public Long getCreateTime() {
-        return createTime;
+    public Integer getAutoIncrement() {
+        return autoIncrement;
     }
 
-    public void setCreateTime(Long createTime) {
-        this.createTime = createTime;
-    }
-
-    public Long getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Long updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getEngine() {
-        return engine;
-    }
-
-    public void setEngine(String engine) {
-        this.engine = engine;
-    }
-
-
-    public String getTableComment() {
-        return tableComment;
-    }
-
-    public void setTableComment(String tableComment) {
-        this.tableComment = tableComment;
+    public void setAutoIncrement(Integer autoIncrement) {
+        this.autoIncrement = autoIncrement;
     }
 
     @Override
     public String toString() {
         return "TableDo{" +
                 "tableName='" + tableName + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", engine='" + engine + '\'' +
-                ", tableComment='" + tableComment + '\'' +
+                ", autoIncrement=" + autoIncrement +
                 '}';
     }
 }

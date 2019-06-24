@@ -12,6 +12,7 @@ public class ColumnDo {
     private String columnDefault;
     private String isNullable;
     private String columnType;
+    private String columnKey;
     private String extra;
     private String columnComment;
 
@@ -63,6 +64,14 @@ public class ColumnDo {
         this.columnType = columnType;
     }
 
+    public String getColumnKey() {
+        return columnKey;
+    }
+
+    public void setColumnKey(String columnKey) {
+        this.columnKey = columnKey;
+    }
+
     public String getExtra() {
         return extra;
     }
@@ -88,6 +97,7 @@ public class ColumnDo {
                 ", columnDefault='" + columnDefault + '\'' +
                 ", isNullable='" + isNullable + '\'' +
                 ", columnType='" + columnType + '\'' +
+                ", columnKey='" + columnKey + '\'' +
                 ", extra='" + extra + '\'' +
                 ", columnComment='" + columnComment + '\'' +
                 '}';

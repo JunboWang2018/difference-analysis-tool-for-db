@@ -1,7 +1,6 @@
 package cn.showclear.www.dao.base.data.impl;
 
 import cn.showclear.utils.DBConnectUtil;
-import cn.showclear.www.common.constant.CommonConstant;
 import cn.showclear.www.dao.base.data.DataDao;
 import cn.showclear.www.pojo.base.ColumnDo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class DataDaoImpl implements DataDao {
     private DBConnectUtil dbConnectUtil;
 
     /**
-     * 根据列信息获得数据，数据按ordinalPosition序号来存入字符串数组中。
+     * 根据列信息获得所有数据，数据按ordinalPosition序号来存入字符串数组中。
      * @param columns
      * @return
      */
@@ -38,13 +37,14 @@ public class DataDaoImpl implements DataDao {
         PreparedStatement prepStmt = conn.prepareStatement(querySQL);
         ResultSet rs = prepStmt.executeQuery();
         while (rs.next()) {
-            String[] strs = new String[columns.size()];
+            String[] strs = new String[columns.size() + 1]; //0不用
             for (ColumnDo column : columns) {
                 int index = column.getOrdinalPosition().intValue();
                 strs[index] = rs.getString(column.getColumnName());
             }
             strsList.add(strs);
         }
+        dbConnectUtil.releaseConnect(conn, prepStmt, rs);
         return strsList;
     }
 
@@ -54,7 +54,7 @@ public class DataDaoImpl implements DataDao {
      */
     private String generateQuerySQL(List<ColumnDo> columns) {
         StringBuilder sqlSB = new StringBuilder();
-        sqlSB.append("SELECT" + " ");
+        sqlSB.append("SELECT ");
         for (int i = 0; i < columns.size(); i++) {
             ColumnDo column = columns.get(i);
             if (i != columns.size() - 1) {
@@ -72,4 +72,5 @@ public class DataDaoImpl implements DataDao {
         sqlSB.append(" FROM " + columns.get(columns.size() - 1).getTableName());
         return sqlSB.toString();
     }
+
 }

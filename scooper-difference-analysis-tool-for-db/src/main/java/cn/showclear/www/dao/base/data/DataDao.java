@@ -7,9 +7,10 @@ import java.util.List;
 
 public interface DataDao {
     /**
-     * 根据列信息获得数据
+     * 根据列信息获得所有数据
      * @param columns
      * @return
      */
     List<String[]> getDataList(List<ColumnDo> columns, String dataSourceName) throws SQLException;
+
 }
