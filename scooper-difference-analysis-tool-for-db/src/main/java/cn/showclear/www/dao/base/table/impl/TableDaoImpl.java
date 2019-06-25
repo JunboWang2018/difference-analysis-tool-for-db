@@ -37,7 +37,7 @@ public class TableDaoImpl implements TableDao {
     @Override
     public List<TableDo> getDBTableInfo(String databaseName) throws SQLException {
         List<TableDo> tableDoList = new ArrayList<TableDo>();
-        String sql = "SELECT TABLE_NAME, AUTO_INCREMENT FROM TABLES WHERE TABLE_SCHEMA = ?";
+        String sql = "SELECT TABLE_NAME, AUTO_INCREMENT, CREATE_TIME, UPDATE_TIME FROM TABLES WHERE TABLE_SCHEMA = ?";
         //获得information_schema数据库的连接，information_schema数据库存放了表结构和列信息
         Connection conn = dbConnectUtil.getConnecttion(CommonConstant.IS_DB_DATASOURCE_NAME);
         PreparedStatement prepStmt = conn.prepareStatement(sql);
@@ -47,6 +47,11 @@ public class TableDaoImpl implements TableDao {
             TableDo tableDo = new TableDo();
             tableDo.setTableName(rs.getString("TABLE_NAME"));
             tableDo.setAutoIncrement(rs.getInt("AUTO_INCREMENT"));
+            tableDo.setCreateTime(rs.getTimestamp("CREATE_TIME").getTime());
+            Timestamp updateTime = rs.getTimestamp("UPDATE_TIME");
+            if (updateTime != null) {
+                tableDo.setUpdateTime(updateTime.getTime());
+            }
             if (tableDo.getAutoIncrement() == null) {
                 LOGGER.error("自增字段为空！");
             }
@@ -197,6 +202,11 @@ public class TableDaoImpl implements TableDao {
         key = sb.append(table.getTableName()).append(".").append("tableName").toString();
         value = table.getTableName();
         properties.setProperty(key, value);
+        //存自增字段
+        sb.delete(0, sb.length());
+        key = sb.append(table.getTableName()).append(".").append("autoIncrement").toString();
+        value = String.valueOf(table.getAutoIncrement());
+        properties.setProperty(key, value);
         //存表创建时间
         sb.delete(0, sb.length());
         key = sb.append(table.getTableName()).append(".").append("createTime").toString();
@@ -236,6 +246,8 @@ public class TableDaoImpl implements TableDao {
                 TableDo tableDo = new TableDo();
                 String tableName = properties.getProperty(prop.toString());
                 tableDo.setTableName(tableName);
+                String autoIncrement = properties.getProperty(tableName + ".autoIncrement");
+                tableDo.setAutoIncrement(Integer.parseInt(autoIncrement));
                 String createTime = properties.getProperty(tableName + ".createTime");
                 tableDo.setCreateTime(Long.parseLong(createTime));
                 String updateTime = properties.getProperty(tableName + ".updateTime");

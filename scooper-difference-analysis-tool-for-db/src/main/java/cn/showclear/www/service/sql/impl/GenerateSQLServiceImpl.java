@@ -91,11 +91,11 @@ public class GenerateSQLServiceImpl implements GenerateSQLService {
             }
         }
         sbSQL.append(") VALUES(");
-        for (int i = 0; i < data.length; i++) {
+        for (int i = 1; i < data.length; i++) {
             //字符串类型和时间类型加引号
-            if (columns.get(i).getColumnType().toLowerCase().contains("char") || columns.get(i).getColumnType().toLowerCase().contains("text")
-                    || columns.get(i).getColumnType().toLowerCase().contains("blob") || columns.get(i).getColumnType().toLowerCase().contains("enum")
-                    || columns.get(i).getColumnType().toLowerCase().contains("set") || columns.get(i).getColumnType().toLowerCase().contains("time")) {
+            if (columns.get(i - 1).getColumnType().toLowerCase().contains("char") || columns.get(i - 1).getColumnType().toLowerCase().contains("text")
+                    || columns.get(i - 1).getColumnType().toLowerCase().contains("blob") || columns.get(i - 1).getColumnType().toLowerCase().contains("enum")
+                    || columns.get(i - 1).getColumnType().toLowerCase().contains("set") || columns.get(i - 1).getColumnType().toLowerCase().contains("time")) {
                 if (i != data.length - 1) {
                     sbSQL.append("'").append(data[i]).append("'").append(",");
                 } else {
@@ -104,8 +104,8 @@ public class GenerateSQLServiceImpl implements GenerateSQLService {
 
             }
             //整形和浮点型不加引号
-            if (columns.get(i).getColumnType().toLowerCase().contains("int") || columns.get(i).getColumnType().toLowerCase().equals("long")
-                    || columns.get(i).getColumnType().toLowerCase().contains("float") || columns.get(i).getColumnType().toLowerCase().contains("double")) {
+            if (columns.get(i - 1).getColumnType().toLowerCase().contains("int") || columns.get(i - 1).getColumnType().toLowerCase().equals("long")
+                    || columns.get(i - 1).getColumnType().toLowerCase().contains("float") || columns.get(i - 1).getColumnType().toLowerCase().contains("double")) {
                 if (i != data.length - 1) {
                     sbSQL.append(data[i]).append(",");
                 } else {
@@ -139,15 +139,28 @@ public class GenerateSQLServiceImpl implements GenerateSQLService {
         }
         sbSQL.append("UPDATE ").append(tableName).append(" SET ");
         for (int i = 0; i < columns.size(); i++) {
-            if (!columns.get(i).getColumnKey().equalsIgnoreCase("PRI")) {
+            //字符串类型添加引号
+            if (columns.get(i).getColumnType().toLowerCase().contains("char") || columns.get(i).getColumnType().toLowerCase().contains("text")
+                    || columns.get(i).getColumnType().toLowerCase().contains("blob") || columns.get(i).getColumnType().toLowerCase().contains("enum")
+                    || columns.get(i).getColumnType().toLowerCase().contains("set") || columns.get(i).getColumnType().toLowerCase().contains("time")) {
                 if (i != columns.size() - 1) {
-                    sbSQL.append(columns.get(i).getColumnName()).append(" = ").append(data[columns.get(i).getOrdinalPosition().intValue()]).append(",");
+                    sbSQL.append("'").append(data[columns.get(i).getOrdinalPosition().intValue()]).append("',");
                 } else {
-                    sbSQL.append(columns.get(i).getColumnName()).append(" = ").append(data[columns.get(i).getOrdinalPosition().intValue()]);
+                    sbSQL.append("'").append(data[columns.get(i).getOrdinalPosition().intValue()]).append("'");
                 }
             }
+            //整形和浮点型不加引号
+            if (columns.get(i).getColumnType().toLowerCase().contains("int") || columns.get(i).getColumnType().toLowerCase().equals("long")
+                    || columns.get(i).getColumnType().toLowerCase().contains("float") || columns.get(i).getColumnType().toLowerCase().contains("double")) {
+                if (i != columns.size() - 1) {
+                    sbSQL.append(data[columns.get(i).getOrdinalPosition().intValue()]).append(",");
+                } else {
+                    sbSQL.append(data[columns.get(i).getOrdinalPosition().intValue()]);
+                }
+            }
+
         }
-        sbSQL.append(" WHERE ").append(priColName).append(" = '").append(data[priColIndex]).append("';");
+        sbSQL.append(" WHERE ").append(priColName).append(" = ").append(data[priColIndex]).append(";");
         return sbSQL.toString();
     }
 
@@ -176,7 +189,7 @@ public class GenerateSQLServiceImpl implements GenerateSQLService {
         if (priColIndex == Integer.MAX_VALUE || StringUtils.isEmpty(priColName)) {
             throw new BusinessException(CommonConstant.FAILED_CODE, "没有找到" + tableName + "表的主键！");
         }
-        sbSQL.append("DELETE FROM ").append(tableName).append(" WHERE ").append(priColName).append(" = '").append(data[priColIndex]).append("';");
+        sbSQL.append("DELETE FROM ").append(tableName).append(" WHERE ").append(priColName).append(" = ").append(data[priColIndex]).append(";");
         return sbSQL.toString();
     }
 

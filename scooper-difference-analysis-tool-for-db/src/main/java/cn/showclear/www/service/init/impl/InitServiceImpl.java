@@ -47,12 +47,9 @@ public class InitServiceImpl implements InitService {
         if (!initFileResult) {
             LOGGER.error("创建备份文件失败！");
         }
-//        Message initDBInfoResult = this.initDBBackupData();
+        Message initDBInfoResult = this.initDBBackupData();
         Message initFileInfoResult = this.initFileBackupData();
-        if (CommonConstant.FAILED_CODE == initFileInfoResult.getCode()) {
-            LOGGER.error("初始化备份信息失败！请重试");
-        }
-/*        if (CommonConstant.FAILED_CODE == initDBInfoResult.getCode() && CommonConstant.FAILED_CODE == initFileInfoResult.getCode()) {
+        if (CommonConstant.FAILED_CODE == initDBInfoResult.getCode() && CommonConstant.FAILED_CODE == initFileInfoResult.getCode()) {
             LOGGER.error("初始化备份信息失败！请重试");
         } else if (CommonConstant.FAILED_CODE == initDBInfoResult.getCode()) {
             LOGGER.error(initDBInfoResult.getMessage());
@@ -60,11 +57,11 @@ public class InitServiceImpl implements InitService {
             LOGGER.error(initFileInfoResult.getMessage());
         } else {
             LOGGER.info("初始化备份信息成功！");
-        }*/
+        }
     }
 
 
-/*    private Message initDBBackupData() {
+    private Message initDBBackupData() {
         List<TableDo> tableDoList = null;
         Properties properties = null;
         try {
@@ -88,7 +85,7 @@ public class InitServiceImpl implements InitService {
             return new Message(CommonConstant.SUCCESS_CODE);
         }
         return new Message(CommonConstant.FAILED_CODE, "初始化备份表结构信息失败！");
-    }*/
+    }
 
     private Message initFileBackupData() {
         Long time = System.currentTimeMillis();

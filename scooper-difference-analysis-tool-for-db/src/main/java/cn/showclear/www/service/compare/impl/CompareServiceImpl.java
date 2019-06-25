@@ -55,8 +55,7 @@ public class CompareServiceImpl implements CompareService {
     @Override
     public Message compareDBInfo() {
         try {
-            List<String> modifiedTables = this.compareTableInfo();
-            this.compareDataInfo(modifiedTables);
+            this.compareTableInfo();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -76,59 +75,65 @@ public class CompareServiceImpl implements CompareService {
     }
 
     /**
-     * 比较表信息，在有更新的表中检查是否有更新字段。若有，添加SQL，并返回有更新的表
+     * 比较表信息
+     *
+     * 1. 检查表
+     * 1. 在有更新的表中检查是否有更新字段。若有，添加SQL。
+     * 2. 比较数据信息
      * @return
      * @throws SQLException
      * @throws IOException
      */
-    private List<String> compareTableInfo() throws SQLException, IOException {
+    private void compareTableInfo() throws SQLException, IOException, BusinessException {
         List<String> modifiedTables = new ArrayList<String>();  //用来存放有更新的表的表名
-        //从主数据库中获取表信息
+        //从mainDB中获取表信息
         Properties properties = null;
         try {
             properties = propFactory.getObject();
         } catch (IOException e) {
             LOGGER.error("读取数据库配置信息失败！");
         }
-        String backupDBName = properties.getProperty("mainDB.dbname");
-        List<TableDo> dbTables = tableDao.getDBTableInfo(backupDBName);
+        String mainDBName = properties.getProperty("mainDB.dbname");
+        List<TableDo> mainDBTables = tableDao.getDBTableInfo(mainDBName);
         //从备份文件中获取表信息
-       /* List<TableDo> fileTables = tableDao.getBackupFileTableInfo();
-        for (int i = 0; i < dbTables.size(); i++) {
-            for (int j = 0; j < fileTables.size(); j++) {
-                //找表名相同的元素
-                if (dbTables.get(i).getTableName().equals(fileTables.get(j).getTableName())) {
-                    //检查创建时间和修改时间是否一致，不一致的加入modifiedTables
-                    if (dbTables.get(i).getCreateTime().longValue() == fileTables.get(j).getCreateTime().longValue()
-                            && dbTables.get(i).getUpdateTime().longValue() == fileTables.get(j).getUpdateTime().longValue()) {
-                        break;
+        List<TableDo> backupFileDBTables = tableDao.getBackupFileTableInfo();
+        //对比信息
+        for (int i = 0; i < mainDBTables.size(); i++) {
+            for (int j = 0; j < backupFileDBTables.size(); j++) {
+                if (mainDBTables.get(i).getTableName().equals(backupFileDBTables.get(j).getTableName())) {
+                    //相同表比较创建时间、修改时间和自增字段
+                    if ((mainDBTables.get(i).getCreateTime().intValue() == backupFileDBTables.get(j).getCreateTime().intValue())
+                            && mainDBTables.get(i).getUpdateTime().intValue() == backupFileDBTables.get(j).getUpdateTime().intValue()) {
+                        if (mainDBTables.get(i).getAutoIncrement().intValue() != backupFileDBTables.get(j).getAutoIncrement().intValue()) {
+                            //自增字段有变化，该表有更新
+                            modifiedTables.add(mainDBTables.get(i).getTableName());
+                        }
+                        //创建时间、修改时间和自增字段均无变化，该表没有更新，继续循环
                     } else {
-                        modifiedTables.add(dbTables.get(i).getTableName());
+                        //创建时间或修改时间有变化，该表有更新
+                        modifiedTables.add(mainDBTables.get(i).getTableName());
                     }
                 }
             }
-        }*/
-        for (int i = 0; i < dbTables.size(); i++) {
-            modifiedTables.add(dbTables.get(i).getTableName());
         }
-        //在有更新的表中检查是否有新增字段
-        String columnSQL = this.compareColumnInfo(modifiedTables);
-        updateSQL.append(columnSQL);
-        return modifiedTables;
+        //比较表结构信息，检查是否有新增列，若有，返回SQL并添加
+        updateSQL.append(this.compareColumnInfo(modifiedTables));
+        //比较表数据信息
+        updateSQL.append(this.compareDataInfo(modifiedTables));
     }
 
     /**
-     * 在有更新的表中检查是否有新增字段。若有，返回新增字段的SQL
-     * @param modifiedTables
+     * 在表中检查是否有新增字段。若有，返回新增字段的SQL
+     * @param tables
      */
-    private String compareColumnInfo(List<String> modifiedTables) throws IOException, SQLException {
+    private String compareColumnInfo(List<String> tables) throws IOException, SQLException {
         StringBuilder addColsSQL = new StringBuilder();
         Properties properties = propFactory.getObject();
         String mainDBName = properties.getProperty("mainDB.dbname");
         String supDBName = properties.getProperty("supDB.dbname");
-        for (int i = 0; i < modifiedTables.size(); i++) {
-            List<ColumnDo> mainDBCols = tableDao.getDBColumnInfo(mainDBName, modifiedTables.get(i));
-            List<ColumnDo> supDBCols = tableDao.getDBColumnInfo(supDBName, modifiedTables.get(i));
+        for (int i = 0; i < tables.size(); i++) {
+            List<ColumnDo> mainDBCols = tableDao.getDBColumnInfo(mainDBName, tables.get(i));
+            List<ColumnDo> supDBCols = tableDao.getDBColumnInfo(supDBName, tables.get(i));
             for (ColumnDo mainDBCol : mainDBCols) {
                 boolean flag = false;
                 for (ColumnDo supDBCol : supDBCols) {
@@ -149,8 +154,12 @@ public class CompareServiceImpl implements CompareService {
     /**
      * 比较有更新表中的数据差异
      * @param modifiedTables
+     * @return
+     * @throws IOException
+     * @throws SQLException
      */
-    private void compareDataInfo(List<String> modifiedTables) throws IOException, SQLException {
+    private String compareDataInfo(List<String> modifiedTables) throws IOException, SQLException {
+        StringBuilder sqlSB = new StringBuilder();
         Properties properties = propFactory.getObject();
         String mainDBName = properties.getProperty("mainDB.dbname");
         String supDBName = properties.getProperty("supDB.dbname");
@@ -160,12 +169,9 @@ public class CompareServiceImpl implements CompareService {
             List<ColumnDo> supDBCols = tableDao.getDBColumnInfo(supDBName, modifiedTables.get(i));
             List<String[]> mainDBDatas = dataDao.getDataList(mainDBCols, CommonConstant.MAIN_DB_DATASOURCE_NAME);
             List<String[]> supDBDatas = dataDao.getDataList(supDBCols, CommonConstant.SUP_DB_DATASOURCE_NAME);
-            //若该表在两个数据库中都没有数据，则此表没有数据更新
-            if (mainDBDatas.size() == 0 && supDBDatas.size() == 0) {
-                continue;
-            }
-            updateSQL.append(this.compareData(modifiedTables.get(i), mainDBCols, mainDBDatas, supDBCols, supDBDatas));
+            sqlSB.append(this.compareData(modifiedTables.get(i), mainDBCols, mainDBDatas, supDBCols, supDBDatas));
         }
+        return sqlSB.toString();
     }
 
     /**
@@ -202,11 +208,9 @@ public class CompareServiceImpl implements CompareService {
         }
         //辅助标记数组
         int[] mainDBFlag = new int[mainDBDatas.size()];
-        for (int i = 0; i < mainDBFlag.length; i++) {
-            mainDBFlag[i] = 1;
-        }
         int[] supDBFlag = new int[supDBDatas.size()];
         for (int i = 0; i < supDBFlag.length; i++) {
+            mainDBFlag[i] = 1;
             supDBFlag[i] = 1;
         }
         //开始比较
@@ -214,6 +218,7 @@ public class CompareServiceImpl implements CompareService {
             //获得主键值
             String[] mainData = mainDBDatas.get(mainDBIndex);
             String priValue = mainData[priIndex];
+            //检查supDB是否存在该主键
             boolean priFlag = false;
             String[] supData = null;
             int supDBIndex = 0;
@@ -234,7 +239,7 @@ public class CompareServiceImpl implements CompareService {
                     //列相同，检查数据
                     boolean dataFlag = true;
                     for (int j = 1; j < mainData.length; j++) {
-                        if (mainData[j].equals(supData[j])) {
+                        if (!mainData[j].equals(supData[j])) {
                             dataFlag = false;
                             sqlSB.append(generateSQLService.generateUpdateRecordSQL(tableName, mainDBCols, mainData));
                         }
