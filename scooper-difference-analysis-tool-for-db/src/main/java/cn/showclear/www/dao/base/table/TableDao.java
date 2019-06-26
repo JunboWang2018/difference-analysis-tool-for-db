@@ -1,5 +1,6 @@
 package cn.showclear.www.dao.base.table;
 
+import cn.com.scooper.common.exception.BusinessException;
 import cn.showclear.www.pojo.base.ColumnDo;
 import cn.showclear.www.pojo.base.TableDo;
 
@@ -14,7 +15,7 @@ public interface TableDao {
      * @return
      * @throws SQLException
      */
-    List<TableDo> getDBTableInfo(String databaseName) throws SQLException;
+    List<TableDo> getDBTableInfo(String databaseName) throws SQLException, BusinessException;
 
     /**
      * 根据数据库名和表名获取数据库中列信息

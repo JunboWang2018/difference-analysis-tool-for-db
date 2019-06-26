@@ -1,5 +1,6 @@
 package cn.showclear.www.dao.base.table.impl;
 
+import cn.com.scooper.common.exception.BusinessException;
 import cn.showclear.utils.DBConnectUtil;
 import cn.showclear.utils.FileConnectUtil;
 import cn.showclear.www.common.constant.CommonConstant;
@@ -35,7 +36,7 @@ public class TableDaoImpl implements TableDao {
      * @throws SQLException
      */
     @Override
-    public List<TableDo> getDBTableInfo(String databaseName) throws SQLException {
+    public List<TableDo> getDBTableInfo(String databaseName) throws SQLException, BusinessException {
         List<TableDo> tableDoList = new ArrayList<TableDo>();
         String sql = "SELECT TABLE_NAME, AUTO_INCREMENT, CREATE_TIME, UPDATE_TIME FROM TABLES WHERE TABLE_SCHEMA = ?";
         //获得information_schema数据库的连接，information_schema数据库存放了表结构和列信息
@@ -54,6 +55,7 @@ public class TableDaoImpl implements TableDao {
             }
             if (tableDo.getAutoIncrement() == null) {
                 LOGGER.error("自增字段为空！");
+                throw new BusinessException(CommonConstant.FAILED_CODE, "自增字段为空！");
             }
             tableDoList.add(tableDo);
         }

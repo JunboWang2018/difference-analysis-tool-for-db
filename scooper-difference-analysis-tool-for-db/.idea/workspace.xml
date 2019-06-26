@@ -8,20 +8,46 @@
   <component name="ChangeListManager">
     <list default="true" id="2c72e7c6-ae7f-49bc-b865-8afc61cc5d11" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/conf_template/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/resources/conf_template/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scooper-difference-analysis-tool-for-db.iml" beforeDir="false" afterPath="$PROJECT_DIR$/scooper-difference-analysis-tool-for-db.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/showclear/www/common/constant/CommonConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/showclear/www/common/constant/CommonConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/showclear/www/controller/data/CompareDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/showclear/www/controller/data/CompareDataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/showclear/www/controller/data/TestDataController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/data/impl/DataDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/data/impl/DataDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/table/TableDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/table/TableDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/table/impl/TableDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/table/impl/TableDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/showclear/www/pojo/base/TableDo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/showclear/www/pojo/base/TableDo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/compare/CompareService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/compare/CompareService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/compare/impl/CompareServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/compare/impl/CompareServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/init/impl/InitServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/init/impl/InitServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/sql/impl/GenerateSQLServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/sql/impl/GenerateSQLServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/sql/GenerateSQLService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/generate/GenerateSQLService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/sql/impl/GenerateSQLServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/generate/impl/GenerateSQLServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/scooper-difference-analysis-tool-for-db.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/showclear/www/common/constant/CommonConstant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/showclear/www/common/constant/CommonConstant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/showclear/www/controller/data/CompareDataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/showclear/www/controller/data/CompareDataController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/showclear/www/controller/data/TestDataController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/showclear/www/dao/base/data/impl/DataDAOImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/showclear/www/dao/base/data/impl/DataDAOImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/showclear/www/dao/base/table/TableDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/showclear/www/dao/base/table/TableDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/cn/showclear/www/dao/base/table/impl/TableDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/showclear/www/dao/base/table/impl/TableDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/showclear/www/pojo/base/TableDo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/showclear/www/pojo/base/TableDo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/showclear/www/service/compare/CompareService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/showclear/www/service/compare/CompareService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/cn/showclear/www/service/compare/impl/CompareServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/showclear/www/service/compare/impl/CompareServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/showclear/www/service/sql/impl/GenerateSQLServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/showclear/www/service/sql/impl/GenerateSQLServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/showclear/www/service/init/impl/InitServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/showclear/www/service/init/impl/InitServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/showclear/www/service/sql/GenerateSQLService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/showclear/www/service/sql/impl/GenerateSQLServiceImpl$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/showclear/www/service/sql/impl/GenerateSQLServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/META-INF/scooper-difference-analysis-tool-for-db.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/common/constant/CommonConstant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/common/constant/CommonConstant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/controller/data/CompareDataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/controller/data/CompareDataController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/controller/data/TestDataController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/dao/base/data/impl/DataDAOImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/dao/base/data/impl/DataDAOImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/dao/base/table/TableDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/dao/base/table/TableDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/dao/base/table/impl/TableDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/dao/base/table/impl/TableDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/pojo/base/TableDo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/pojo/base/TableDo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/service/compare/CompareService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/service/compare/CompareService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/service/compare/impl/CompareServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/service/compare/impl/CompareServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/service/sql/impl/GenerateSQLServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/service/sql/impl/GenerateSQLServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/service/init/impl/InitServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/service/init/impl/InitServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/service/sql/GenerateSQLService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/service/sql/impl/GenerateSQLServiceImpl$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/WEB-INF/classes/cn/showclear/www/service/sql/impl/GenerateSQLServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/scooper-difference-analysis-tool-for-db.kotlin_module" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -55,6 +81,10 @@
       <find>put</find>
       <find>user.conf</find>
       <find>file</find>
+      <find>mainDBDatas</find>
+      <find>mainData</find>
+      <find>throw</find>
+      <find>excpMsg</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -90,23 +120,28 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/file/FileDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/file/impl/FileDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/data/impl/DataDAOImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/compare/CompareService.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/config/InstantiationTracingBeanPostProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/init/InitService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/table/TableDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/controller/data/CompareDataController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/common/constant/CommonConstant.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/controller/data/TestDataController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/pojo/base/ColumnDo.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/sql/GenerateSQLService.java" />
         <option value="$PROJECT_DIR$/resources/conf_template/db.properties" />
         <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/data/DataDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/data/impl/DataDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/pojo/base/TableDo.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/init/impl/InitServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/table/impl/TableDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/compare/impl/CompareServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/sql/impl/GenerateSQLServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/data/impl/DataDaoImpl.java" />
+        <option value="$PROJECT_DIR$/resources/conf_template/config.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/utils/ZipUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/pojo/base/GenerateFilePathDo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/common/constant/CommonConstant.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/generate/GenerateFileService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/generate/impl/GenerateFileServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/compare/CompareService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/table/impl/TableDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/table/TableDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/controller/data/CompareDataController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/showclear/www/service/compare/impl/CompareServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -126,7 +161,17 @@
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
-      <expand />
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="scooper-difference-analysis-tool-for-db Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="scooper-difference-analysis-tool-for-db Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
       <select />
     </treeState>
   </component>
@@ -144,6 +189,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -165,32 +211,62 @@
             <path>
               <item name="scooper-difference-analysis-tool-for-db" type="b2602c69:ProjectViewProjectNode" />
               <item name="scooper-difference-analysis-tool-for-db" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="scooper-difference-analysis-tool-for-db" type="b2602c69:ProjectViewProjectNode" />
               <item name="scooper-difference-analysis-tool-for-db" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="showclear" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="scooper-difference-analysis-tool-for-db" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="scooper-difference-analysis-tool-for-db" type="b2602c69:ProjectViewProjectNode" />
               <item name="scooper-difference-analysis-tool-for-db" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="showclear" type="462c0819:PsiDirectoryNode" />
-              <item name="www" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="scooper-difference-analysis-tool-for-db" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scooper-difference-analysis-tool-for-db" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scooper-difference-analysis-tool-for-db" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="scooper-difference-analysis-tool-for-db" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
+              <item name="update_2019-06-26" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scooper-difference-analysis-tool-for-db" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="scooper-difference-analysis-tool-for-db" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.apache.commons:commons-lang3:3.8.1" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="scooper-difference-analysis-tool-for-db" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.apache.commons:commons-lang3:3.8.1" type="70bed36:NamedLibraryElementNode" />
+              <item name="commons-lang3-3.8.1.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scooper-difference-analysis-tool-for-db" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.apache.commons:commons-lang3:3.8.1" type="70bed36:NamedLibraryElementNode" />
+              <item name="commons-lang3-3.8.1.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scooper-difference-analysis-tool-for-db" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.apache.commons:commons-lang3:3.8.1" type="70bed36:NamedLibraryElementNode" />
+              <item name="commons-lang3-3.8.1.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="lang3" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -205,7 +281,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -332,6 +408,11 @@
       <workItem from="1561364937356" duration="11013000" />
       <workItem from="1561377483529" duration="2252000" />
       <workItem from="1561426022696" duration="184000" />
+      <workItem from="1561428106463" duration="501000" />
+      <workItem from="1561428632203" duration="472000" />
+      <workItem from="1561429128440" duration="240000" />
+      <workItem from="1561429389819" duration="22783000" />
+      <workItem from="1561511365400" duration="31825000" />
     </task>
     <servers />
   </component>
@@ -353,12 +434,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116883000" />
+    <option name="totallyTimeSpent" value="172704000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2153518" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1881663" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -367,25 +448,26 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Application Servers" order="0" weight="0.32936078" />
-      <window_info anchor="bottom" id="Messages" order="1" weight="0.3286334" />
+      <window_info anchor="bottom" id="Messages" order="1" sideWeight="0.49573562" weight="0.3286334" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="4" weight="0.48212352" />
-      <window_info anchor="bottom" id="Debug" order="5" weight="0.35900217" />
+      <window_info anchor="bottom" id="Run" order="4" weight="0.21366595" />
+      <window_info anchor="bottom" id="Debug" order="5" sideWeight="0.81023455" weight="0.44143167" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="8" />
       <window_info anchor="bottom" id="Spring" order="9" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5042644" side_tool="true" weight="0.36008677" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.329718" />
       <window_info anchor="bottom" id="Terminal" order="15" weight="0.32936078" />
+      <window_info anchor="bottom" id="Jelastic" order="16" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.0554371" />
+      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.21375267" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Database" order="6" />
@@ -397,83 +479,119 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/compare/impl/CompareServiceImpl.java</url>
+          <line>137</line>
+          <properties />
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>i=435</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>columns.get(i).getTableName().equals(&quot;zbp_post&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>mainDBIndex == 440</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>mainDBIndex==440</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>j==11</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>priIndex == 11</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>i = 9</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>i==</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="watch">
+      <expression>
+        <expression-string>mainDBDatas.get(435)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>mainData</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>mainDBDatas.get(2)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>mainDBDatas.get(440)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>mainDBDatas</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>supDBDatas.get(440)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>supDBDatas[440]</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>supDBDatas</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>data</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>mainDBDatas.get(9)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/io/FileInputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="122" column="11" selection-start-line="122" selection-start-column="11" selection-end-line="122" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.3.12.RELEASE/spring-beans-4.3.12.RELEASE.jar!/org/springframework/beans/factory/config/PropertiesFactoryBean.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="15" column="22" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/default.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="636">
-          <caret line="71" selection-start-line="71" selection-end-line="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="31" column="108" selection-start-line="31" selection-start-column="98" selection-end-line="31" selection-end-column="119" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/database/ColumnService.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/database/impl/DataServiceImpl.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/database/impl/TableServiceImpl.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/utils/DBConnectUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="25" column="36" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/init/InitDao.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/init/impl/InitDaoImpl.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/io/Closeable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/io/InputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="44" column="48" selection-start-line="44" selection-start-column="48" selection-end-line="44" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/io/OutputStream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
           <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/Properties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="339" column="29" selection-start-line="339" selection-start-column="29" selection-end-line="339" selection-end-column="29" />
-          <folding>
-            <element signature="e#4787#4788#0" expanded="true" />
-            <element signature="e#4813#4814#0" expanded="true" />
-            <element signature="e#4990#4991#0" expanded="true" />
-            <element signature="e#5030#5031#0" expanded="true" />
-            <element signature="e#5711#5712#0" expanded="true" />
-            <element signature="e#5749#5750#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -483,13 +601,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/utils/FileConnectUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -504,13 +615,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/database/DataService.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/database/TableService.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/compare.fxml" />
-    <entry file="file://$PROJECT_DIR$/resources/conf_template/config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/init/InitService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -526,13 +630,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/controller/data/InitDataController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/common/constant/CommonConstant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="31" column="54" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/Comparator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-722">
@@ -583,78 +680,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/List.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="475" column="17" selection-start-line="475" selection-start-column="17" selection-end-line="475" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/conf_template/db.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/lang/Override.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/data/DataDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/data/impl/DataDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/controller/data/CompareDataController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="25" column="49" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/compare/CompareService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/sql/GenerateSQLService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="29" column="11" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/file/FileDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -694,33 +723,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="707" column="23" selection-start-line="707" selection-start-column="23" selection-end-line="707" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/file/impl/FileDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="29" column="30" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="656" column="18" selection-start-line="656" selection-start-column="18" selection-end-line="656" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/sql/impl/GenerateSQLServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2159">
-          <caret line="135" column="27" selection-start-line="135" selection-start-column="16" selection-end-line="135" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -769,10 +771,215 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="2131" column="40" selection-start-line="2131" selection-start-column="28" selection-end-line="2131" selection-end-column="40" />
+          <folding>
+            <element signature="e#82971#82972#0" expanded="true" />
+            <element signature="e#83020#83021#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/init/impl/InitServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="81" column="52" selection-start-line="81" selection-start-column="52" selection-end-line="81" selection-end-column="52" />
+        <state relative-caret-position="-459">
+          <caret line="52" column="29" lean-forward="true" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/List.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="543" column="6" selection-start-line="543" selection-start-column="6" selection-end-line="543" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="419" column="34" lean-forward="true" selection-start-line="419" selection-start-column="34" selection-end-line="419" selection-end-column="34" />
+          <folding>
+            <element signature="e#15586#15587#0" expanded="true" />
+            <element signature="e#15631#15632#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.12.RELEASE/spring-aop-4.3.12.RELEASE.jar!/org/springframework/aop/framework/ReflectiveMethodInvocation.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/data/impl/DataDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="44" column="54" selection-start-line="44" selection-start-column="54" selection-end-line="44" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/utils/DBConnectUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="52" column="16" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/data/DataDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.12.RELEASE/spring-aop-4.3.12.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2465">
+          <caret line="178" selection-start-line="178" selection-end-line="178" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/conf_template/db.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/generate/impl/GenerateSQLServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1837">
+          <caret line="74" column="18" selection-start-line="74" selection-start-column="18" selection-end-line="74" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/jre/lib/rt.jar!/sun/reflect/NativeMethodAccessorImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/scooper-difference-analysis-tool-for-db/file/update_2019-06-26/sql_1561518846948.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/Properties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-475">
+          <caret line="138" column="11" selection-start-line="138" selection-start-column="11" selection-end-line="138" selection-end-column="11" />
+          <folding>
+            <element signature="e#4787#4788#0" expanded="true" />
+            <element signature="e#4813#4814#0" expanded="true" />
+            <element signature="e#4990#4991#0" expanded="true" />
+            <element signature="e#5030#5031#0" expanded="true" />
+            <element signature="e#5711#5712#0" expanded="true" />
+            <element signature="e#5749#5750#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/utils/ZipUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/io/IOException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="56" column="11" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
+          <folding>
+            <element signature="e#1066#1067#0" expanded="true" />
+            <element signature="e#1096#1097#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/pojo/base/GenerateFilePathDo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/generate/impl/GenerateFileServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="81" column="18" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/common/constant/CommonConstant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="38" column="40" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/conf_template/config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/utils/FileConnectUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1091">
+          <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/generate/GenerateFileService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="30" column="11" selection-start-line="30" selection-start-column="11" selection-end-line="30" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/generate/GenerateSQLService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.3.12.RELEASE/spring-beans-4.3.12.RELEASE.jar!/org/springframework/beans/factory/config/PropertiesFactoryBean.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/table/impl/TableDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -781,28 +988,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/table/TableDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+        <state relative-caret-position="278">
+          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/table/impl/TableDaoImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/compare/CompareService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3995">
-          <caret line="249" column="71" selection-start-line="249" selection-start-column="58" selection-end-line="249" selection-end-column="71" />
+        <state relative-caret-position="153">
+          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/controller/data/CompareDataController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+          <folding>
+            <element signature="e#929#945#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/file/impl/FileDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/dao/base/file/FileDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/showclear/www/service/compare/impl/CompareServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="254" selection-start-line="254" selection-end-line="254" />
+        <state relative-caret-position="196">
+          <caret line="193" column="59" lean-forward="true" selection-start-line="193" selection-start-column="59" selection-end-line="193" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -850,6 +1081,17 @@
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
           <last-edited>jdk1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>

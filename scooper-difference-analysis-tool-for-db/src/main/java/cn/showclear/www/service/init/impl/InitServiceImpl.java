@@ -47,9 +47,14 @@ public class InitServiceImpl implements InitService {
         if (!initFileResult) {
             LOGGER.error("创建备份文件失败！");
         }
-        Message initDBInfoResult = this.initDBBackupData();
+  //      Message initDBInfoResult = this.initDBBackupData();
         Message initFileInfoResult = this.initFileBackupData();
-        if (CommonConstant.FAILED_CODE == initDBInfoResult.getCode() && CommonConstant.FAILED_CODE == initFileInfoResult.getCode()) {
+        if (CommonConstant.FAILED_CODE == initFileInfoResult.getCode()) {
+            LOGGER.error("初始化备份信息失败！请重试");
+        } else {
+            LOGGER.info("初始化备份信息成功！");
+        }
+       /* if (CommonConstant.FAILED_CODE == initDBInfoResult.getCode() && CommonConstant.FAILED_CODE == initFileInfoResult.getCode()) {
             LOGGER.error("初始化备份信息失败！请重试");
         } else if (CommonConstant.FAILED_CODE == initDBInfoResult.getCode()) {
             LOGGER.error(initDBInfoResult.getMessage());
@@ -57,7 +62,7 @@ public class InitServiceImpl implements InitService {
             LOGGER.error(initFileInfoResult.getMessage());
         } else {
             LOGGER.info("初始化备份信息成功！");
-        }
+        }*/
     }
 
 

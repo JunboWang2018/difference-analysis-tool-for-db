@@ -36,8 +36,16 @@ public final class CommonConstant {
     //方法返回结果码常量
     public static final int SUCCESS_CODE = 1;
     public static final int FAILED_CODE = 1000;
+    public static final String NO_UPDATE = "没有更新";
 
     //数据库常量
     public static final String NOT_NULLABLE = "NO";
     public static final String AUTO_INCREMENT = "auto_increment";
+
+    //文件名常量
+    public static final String PARENT_FILE_NAME_START = "update";
+    public static final String SQL_FILE_NAME_START = "sql";
+    public static final String SQL_FILE_NAME_END = ".sql";
+    public static final String ZIP_FILE_NAME_START = "upload";
+    public static final String ZIP_FILE_NAME_END = ".zip";
 }

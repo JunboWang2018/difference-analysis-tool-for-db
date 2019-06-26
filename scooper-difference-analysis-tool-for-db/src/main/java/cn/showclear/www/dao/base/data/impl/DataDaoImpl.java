@@ -36,8 +36,10 @@ public class DataDaoImpl implements DataDao {
         Connection conn = dbConnectUtil.getConnecttion(dataSourceName);
         PreparedStatement prepStmt = conn.prepareStatement(querySQL);
         ResultSet rs = prepStmt.executeQuery();
+        int i = 0;
         while (rs.next()) {
             String[] strs = new String[columns.size() + 1]; //0不用
+            i++;
             for (ColumnDo column : columns) {
                 int index = column.getOrdinalPosition().intValue();
                 strs[index] = rs.getString(column.getColumnName());
