@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:cache="http://www.springframework.org/schema/cache" 
+	xsi:schemaLocation=" 
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd"
+	default-autowire="byName">
+	<!--
+		注意上面的default-autowire="byName"，如果没有这个声明不会被注入
+	-->
+
+	<description>Spring-database配置</description>
+	
+	<!-- MyBatis配置 -->
+<!--	<bean id="mybatisSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:/config/ds/base/sqlMapConfig.xml" />
+		&lt;!&ndash; 自动扫描entity目录, 省掉Configuration.xml里的手工配置 &ndash;&gt;
+		<property name="typeAliasesPackage" value="cn.showclear.www.pojo.base" />
+		&lt;!&ndash; 显式指定Mapper文件位置 &ndash;&gt;
+		<property name="mapperLocations" value="classpath:/config/mappers/base/**/*.xml" />
+	</bean>-->
+	
+	<!-- 扫描basePackage下所有以@Repository标识的 接口-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="cn.showclear.www.dao.base" />
+		<property name="annotationClass" value="org.springframework.stereotype.Repository"/>
+		<property name="sqlSessionFactoryBeanName" value="mybatisSqlSessionFactory" />
+	</bean>
+
+	<!-- 主数据库 -->
+	<!--
+		连接池配置:
+		初始化连接:5 ,最大连接数量:10 , 最小空闲连接:2,最大空闲连接:10 超时等待时间以毫秒为单位:1000ms , 是否在自动回收超时连接的时候打印连接的超时错误：是 
+		是否自动回收超时连接：是   超时时间(以秒数为单位)：180s 
+	-->
+	<bean id="mainDBDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${mainDB.driver}" />
+		<property name="url" value="${mainDB.url}" />
+		<property name="username" value="${mainDB.user}" />
+		<property name="password" value="${mainDB.password}" />
+		<property name="initialSize" value="${mainDB.initialSize}"></property>
+		<property name="maxActive" value="${mainDB.maxActive}"></property>
+		<property name="minIdle" value="${mainDB.minIdle}"></property>
+		<property name="maxIdle" value="${mainDB.maxIdle}"></property>
+		<property name="maxWait" value="${mainDB.maxWait}"></property>
+		<property name="logAbandoned" value="true" ></property>
+		<property name="removeAbandoned" value="true" ></property>
+		<property name="removeAbandonedTimeout" value="180" ></property>
+		<property name="validationQuery" value="select now() from dual"/>
+	</bean>
+	
+	<bean id="txManager1" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="mainDBDataSource" />
+	</bean>
+
+	<!-- 配置事务特性 -->
+	<tx:advice id="txAdvice1" transaction-manager="txManager1">
+		<tx:attributes>
+			<tx:method name="select*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="query*" read-only="true" />
+			<tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 配置哪些类的方法需要进行事务管理 -->
+	<aop:config>
+		<aop:pointcut id="allManagerMethod" expression="execution(* cn.showclear.*..*.*(..))" />
+		<aop:advisor advice-ref="txAdvice1" pointcut-ref="allManagerMethod" />
+	</aop:config>
+
+	<!-- 辅助备份数据库或正式环境数据库 -->
+	<!--
+		连接池配置:
+		初始化连接:5 ,最大连接数量:10 , 最小空闲连接:2,最大空闲连接:10 超时等待时间以毫秒为单位:1000ms , 是否在自动回收超时连接的时候打印连接的超时错误：是
+		是否自动回收超时连接：是   超时时间(以秒数为单位)：180s
+	-->
+	<bean id="supDBDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${supDB.driver}" />
+		<property name="url" value="${supDB.url}" />
+		<property name="username" value="${supDB.user}" />
+		<property name="password" value="${supDB.password}" />
+		<property name="initialSize" value="${supDB.initialSize}"></property>
+		<property name="maxActive" value="${supDB.maxActive}"></property>
+		<property name="minIdle" value="${supDB.minIdle}"></property>
+		<property name="maxIdle" value="${supDB.maxIdle}"></property>
+		<property name="maxWait" value="${supDB.maxWait}"></property>
+		<property name="logAbandoned" value="true" ></property>
+		<property name="removeAbandoned" value="true" ></property>
+		<property name="removeAbandonedTimeout" value="180" ></property>
+		<property name="validationQuery" value="select now() from dual"/>
+	</bean>
+
+	<bean id="txManager2" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="supDBDataSource" />
+	</bean>
+
+	<!-- 配置事务特性 -->
+	<tx:advice id="txAdvice2" transaction-manager="txManager2">
+		<tx:attributes>
+			<tx:method name="select*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="query*" read-only="true" />
+			<tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 配置哪些类的方法需要进行事务管理 -->
+	<aop:config>
+		<aop:pointcut id="allManagerMethod" expression="execution(* cn.showclear.*..*.*(..))" />
+		<aop:advisor advice-ref="txAdvice2" pointcut-ref="allManagerMethod" />
+	</aop:config>
+
+
+	<!-- information_schema数据库 -->
+	<!--
+		连接池配置:
+		初始化连接:5 ,最大连接数量:10 , 最小空闲连接:2,最大空闲连接:10 超时等待时间以毫秒为单位:1000ms , 是否在自动回收超时连接的时候打印连接的超时错误：是
+		是否自动回收超时连接：是   超时时间(以秒数为单位)：180s
+	-->
+	<bean id="isDBDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${isDB.driver}" />
+		<property name="url" value="${isDB.url}" />
+		<property name="username" value="${isDB.user}" />
+		<property name="password" value="${isDB.password}" />
+		<property name="initialSize" value="${isDB.initialSize}"></property>
+		<property name="maxActive" value="${isDB.maxActive}"></property>
+		<property name="minIdle" value="${isDB.minIdle}"></property>
+		<property name="maxIdle" value="${isDB.maxIdle}"></property>
+		<property name="maxWait" value="${isDB.maxWait}"></property>
+		<property name="logAbandoned" value="true" ></property>
+		<property name="removeAbandoned" value="true" ></property>
+		<property name="removeAbandonedTimeout" value="180" ></property>
+		<property name="validationQuery" value="select now() from dual"/>
+	</bean>
+
+	<bean id="txManager3" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="isDBDataSource" />
+	</bean>
+
+	<!-- 配置事务特性 -->
+	<tx:advice id="txAdvice3" transaction-manager="txManager3">
+		<tx:attributes>
+			<tx:method name="select*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="query*" read-only="true" />
+			<tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 配置哪些类的方法需要进行事务管理 -->
+	<aop:config>
+		<aop:pointcut id="allManagerMethod" expression="execution(* cn.showclear.*..*.*(..))" />
+		<aop:advisor advice-ref="txAdvice3" pointcut-ref="allManagerMethod" />
+	</aop:config>
+</beans>
