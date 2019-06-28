@@ -1,5 +1,7 @@
 package cn.showclear.www.dao.base.file;
 
+import cn.com.scooper.common.exception.BusinessException;
+
 import java.io.IOException;
 
 public interface FileDao {

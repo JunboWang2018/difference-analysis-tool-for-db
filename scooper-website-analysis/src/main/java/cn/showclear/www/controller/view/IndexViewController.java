@@ -13,6 +13,6 @@ public class IndexViewController {
 
     @RequestMapping("/")
     public String index(){
-        return "index.jsp";
+        return "/index.jsp";
     }
 }

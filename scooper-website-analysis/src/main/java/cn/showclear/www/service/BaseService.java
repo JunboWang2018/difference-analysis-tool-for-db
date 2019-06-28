@@ -1,6 +1,6 @@
 /**
  *
- * Project Name: scooper-difference-analysis-tool-for-db
+ * Project Name: scooper-website-analysis
  * File Name: BaseService.java
  * Package Name: cn.showclear.www.service
  * Description: 

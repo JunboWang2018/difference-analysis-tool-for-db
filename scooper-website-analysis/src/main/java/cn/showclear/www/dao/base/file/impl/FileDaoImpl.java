@@ -1,5 +1,6 @@
 package cn.showclear.www.dao.base.file.impl;
 
+import cn.com.scooper.common.exception.BusinessException;
 import cn.showclear.utils.FileConnectUtil;
 import cn.showclear.www.dao.base.file.FileDao;
 import org.slf4j.Logger;

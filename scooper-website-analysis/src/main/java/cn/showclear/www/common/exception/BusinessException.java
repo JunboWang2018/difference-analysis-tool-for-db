@@ -1,6 +1,6 @@
 /**
  *
- * Project Name: scooper-difference-analysis-tool-for-db
+ * Project Name: scooper-website-analysis
  * File Name: BusinessException.java
  * Package Name: cn.showclear.www.common.exception
  * Description: 

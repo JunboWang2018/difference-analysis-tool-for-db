@@ -1,6 +1,6 @@
 /**
  *
- * Project Name: scooper-difference-analysis-tool-for-db-ds
+ * Project Name: scooper-website-analysis-ds
  * File Name: BaseCase.java
  * Package Name: cn.showclear.base
  * Description: 

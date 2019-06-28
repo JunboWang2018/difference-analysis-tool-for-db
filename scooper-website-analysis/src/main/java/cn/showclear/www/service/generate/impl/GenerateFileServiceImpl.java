@@ -1,11 +1,14 @@
 package cn.showclear.www.service.generate.impl;
 
 import cn.showclear.www.common.constant.CommonConstant;
+import cn.showclear.www.dao.base.count.CountDao;
 import cn.showclear.www.service.generate.GenerateFileService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,6 +24,10 @@ import java.util.Date;
  */
 @Service
 public class GenerateFileServiceImpl implements GenerateFileService {
+
+    @Autowired
+    private CountDao countDao;
+
     /**
      * 生成sql文件，并返回生成路径，不含SQL文件名
      * @param path
@@ -30,7 +37,7 @@ public class GenerateFileServiceImpl implements GenerateFileService {
     public String generateSQLFile(String path, String sql) throws IOException {
         String targetPath = this.createFolder(path);
         Path filePath = this.createSQLFile(targetPath);
-        BufferedWriter bufferedWriter = Files.newBufferedWriter(filePath, StandardOpenOption.WRITE);
+        BufferedWriter bufferedWriter = Files.newBufferedWriter(filePath, Charset.defaultCharset(), StandardOpenOption.WRITE);
         bufferedWriter.write(sql, 0, sql.length());
         bufferedWriter.flush();
         bufferedWriter.close();
@@ -63,7 +70,8 @@ public class GenerateFileServiceImpl implements GenerateFileService {
      * @throws IOException
      */
     private Path createSQLFile(String path) throws IOException {
-        String fileName = CommonConstant.SQL_FILE_NAME_START + "_" + new Date().getTime()+ CommonConstant.SQL_FILE_NAME_END;
+        int count = countDao.getCount();
+        String fileName = CommonConstant.SQL_FILE_NAME_START + "_" + count + "_" + new Date().getTime() + CommonConstant.SQL_FILE_NAME_END;
         String filePath = path + "\\" + fileName;
         Path path1 = Paths.get(filePath);
         if (Files.notExists(path1)) {
@@ -80,8 +88,9 @@ public class GenerateFileServiceImpl implements GenerateFileService {
      */
     @Override
     public String generateZipFilePath(String parentPath) throws IOException {
+        int count = countDao.getCount();
         String targetPath = this.createFolder(parentPath);
-        String fileName = CommonConstant.ZIP_FILE_NAME_START + "_" + new Date().getTime()+ CommonConstant.ZIP_FILE_NAME_END;
+        String fileName = CommonConstant.ZIP_FILE_NAME_START + "_" + count + "_" + new Date().getTime() + CommonConstant.ZIP_FILE_NAME_END;
         String filePath = targetPath + "\\" + fileName;
         return filePath;
     }

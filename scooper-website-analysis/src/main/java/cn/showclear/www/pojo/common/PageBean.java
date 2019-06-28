@@ -1,5 +1,5 @@
 /**
- * Project Name: scooper-difference-analysis-tool-for-db-dsapi
+ * Project Name: scooper-website-analysis-dsapi
  * File Name: PageBean.java
  * Package Name: cn.showclear.www.pojo.common
  * Copyright (c) 2017 杭州叙简科技股份有限公司

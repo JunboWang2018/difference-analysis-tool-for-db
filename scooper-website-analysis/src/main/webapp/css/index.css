@@ -1,1 +1,3 @@
 .indexW{width:1400px;margin:0 auto;}
+.bodyFlow{overflow: hidden;}
+.historyTable{overflow: auto; height: 500px;}

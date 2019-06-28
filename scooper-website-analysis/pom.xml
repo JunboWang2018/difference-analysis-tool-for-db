@@ -4,7 +4,7 @@
 	<groupId>cn.showclear</groupId>
 	<artifactId>scooper-website-analysis</artifactId>
 	<packaging>war</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0.1</version>
 	<name>scooper-website-analysis</name>
 	<url>http://www.scooper.com.cn</url>
 
@@ -151,9 +151,16 @@
 										<include name="CHANGELOG.md" />
 									</fileset>
 									<fileset dir="${project.basedir}/resources">
-										<include name="conf_template/**" />
+										<!--<include name="conf_template/${project.artifactId}/**" />-->
 										<include name="sql/**" />
-										<include name="thirdpart/**" />
+										<!--<include name="thirdpart/**" />-->
+									</fileset>
+								</copy>
+								<copy toDir="${package.dir}/config/${project.artifactId}"
+									  overwrite="true">
+									<fileset dir="${project.basedir}/resources/conf_template">
+										<include name="config.properties" />
+										<include name="db.properties" />
 									</fileset>
 								</copy>
 
@@ -183,7 +190,7 @@
 				<version>9.4.8.v20171121</version>
 				<configuration>
 					<webApp>
-						<contextPath>/scooper-difference-analysis-tool-for-db</contextPath>
+						<contextPath>/scooper-website-analysis</contextPath>
 					</webApp>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 				</configuration>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
 
-  <display-name>scooper-difference-analysis-tool-for-db</display-name>
+  <display-name>scooper-website-analysis</display-name>
   
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -10,7 +10,7 @@
     
     <context-param>
         <param-name>webAppRootKey</param-name>
-        <param-value>scooper-difference-analysis-tool-for-db.rest</param-value>
+        <param-value>scooper-website-analysis.rest</param-value>
     </context-param>
    <!--自定义由Spring载入的Log4j配置文件位置-->
     <context-param>
@@ -50,7 +50,7 @@
         -->
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     
     

@@ -1,6 +1,6 @@
 /**
  *
- * Project Name: scooper-difference-analysis-tool-for-db-ds
+ * Project Name: scooper-website-analysis-ds
  * File Name: JUnit4ClassRunner.java
  * Package Name: cn.showclear.base
  * Description: 
@@ -30,7 +30,7 @@ import org.springframework.util.Log4jConfigurer;
 @SuppressWarnings("deprecation")
 public class JUnit4ClassRunner extends SpringJUnit4ClassRunner {
 
-	private static final String APP_NAME = "/scooper-difference-analysis-tool-for-db";
+	private static final String APP_NAME = "/scooper-website-analysis";
 	private static final String CFG_BASE_LINUX = "/icooper/config";
 	private static final String CFG_BASE_WINDOWS = System.getProperty("user.home") + "\\scooper";
 	

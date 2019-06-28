@@ -1,6 +1,6 @@
 /**
  *
- * Project Name: scooper-difference-analysis-tool-for-db
+ * Project Name: scooper-website-analysis
  * File Name: PinyinUtil.java
  * Package Name: cn.showclear.utils
  * Description: 

@@ -4,6 +4,10 @@ import cn.com.scooper.common.exception.BusinessException;
 
 public interface CompareService {
 
+    /**
+     * 获取导出路径
+     * @return
+     */
     String getGeneratePath();
     /**
      * 比较数据库信息

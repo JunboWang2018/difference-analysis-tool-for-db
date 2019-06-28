@@ -1,6 +1,6 @@
 /**
  *
- * Project Name: scooper-difference-analysis-tool-for-db-common
+ * Project Name: scooper-website-analysis-common
  * File Name: CommonConstant.java
  * Package Name: cn.showclear.www.common.constant
  * Description: 
@@ -42,7 +42,7 @@ public final class CommonConstant {
     public static final String NOT_NULLABLE = "NO";
     public static final String AUTO_INCREMENT = "auto_increment";
 
-    //文件名常量
+    //文件名常量（不能带有下划线）
     public static final String PARENT_FILE_NAME_START = "update";
     public static final String SQL_FILE_NAME_START = "sql";
     public static final String SQL_FILE_NAME_END = ".sql";

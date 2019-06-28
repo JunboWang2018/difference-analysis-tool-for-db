@@ -15,16 +15,7 @@
 	-->
 
 	<description>Spring-database配置</description>
-	
-	<!-- MyBatis配置 -->
-<!--	<bean id="mybatisSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:/config/ds/base/sqlMapConfig.xml" />
-		&lt;!&ndash; 自动扫描entity目录, 省掉Configuration.xml里的手工配置 &ndash;&gt;
-		<property name="typeAliasesPackage" value="cn.showclear.www.pojo.base" />
-		&lt;!&ndash; 显式指定Mapper文件位置 &ndash;&gt;
-		<property name="mapperLocations" value="classpath:/config/mappers/base/**/*.xml" />
-	</bean>-->
+
 	
 	<!-- 扫描basePackage下所有以@Repository标识的 接口-->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

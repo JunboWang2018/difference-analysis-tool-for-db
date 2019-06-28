@@ -6,16 +6,16 @@ package cn.showclear.www.pojo.base;
  * @date 2019/6/27
  */
 public class HistoryQo {
-    private Integer id;
+    private int id;
     private String date;
     private String path;
     private String fileName;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -1,7 +1,9 @@
 package cn.showclear.www.service.init.impl;
 
+import cn.com.scooper.common.exception.BusinessException;
 import cn.showclear.utils.FileConnectUtil;
 import cn.showclear.www.common.constant.CommonConstant;
+import cn.showclear.www.dao.base.count.CountDao;
 import cn.showclear.www.dao.base.file.FileDao;
 import cn.showclear.www.dao.base.table.TableDao;
 import cn.showclear.www.pojo.base.TableDo;
@@ -36,24 +38,23 @@ public class InitServiceImpl implements InitService {
     @Autowired
     private PropertiesFactoryBean propFactory;
 
+    @Autowired
+    private CountDao countDao;
+
     /**
      * 初始化工具，包含数据库备份和文件时间备份
      * @return
      */
     @Override
-    public void init() {
+    public void init() throws BusinessException {
         //创建备份文件
         boolean initFileResult = FileConnectUtil.initFile();
         if (!initFileResult) {
             LOGGER.error("创建备份文件失败！");
         }
   //      Message initDBInfoResult = this.initDBBackupData();
-        Message initFileInfoResult = this.initFileBackupData();
-        if (CommonConstant.FAILED_CODE == initFileInfoResult.getCode()) {
-            LOGGER.error("初始化备份信息失败！请重试");
-        } else {
-            LOGGER.info("初始化备份信息成功！");
-        }
+        this.initFileBackupData();
+        this.initCountBackupData();
        /* if (CommonConstant.FAILED_CODE == initDBInfoResult.getCode() && CommonConstant.FAILED_CODE == initFileInfoResult.getCode()) {
             LOGGER.error("初始化备份信息失败！请重试");
         } else if (CommonConstant.FAILED_CODE == initDBInfoResult.getCode()) {
@@ -66,39 +67,50 @@ public class InitServiceImpl implements InitService {
     }
 
 
-    private Message initDBBackupData() {
+    private void initDBBackupData() throws BusinessException {
         List<TableDo> tableDoList = null;
         Properties properties = null;
         try {
             properties = propFactory.getObject();
         } catch (IOException e) {
-            LOGGER.error("读取数据库配置信息失败！");
-            return new Message(CommonConstant.FAILED_CODE, "读取数据库配置信息失败！");
+            String excepMsg = "读取数据库配置信息失败！";
+            LOGGER.error(excepMsg);
+            throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         }
         String backupDBName = properties.getProperty("mainDB.dbname");
         try {
             tableDoList = tableDao.getDBTableInfo(backupDBName);
         } catch (SQLException e) {
-            return new Message(CommonConstant.FAILED_CODE, "初始化备份过程中查询表结构信息失败！");
+            String excepMsg = "初始化备份过程中查询表结构信息失败！";
+            LOGGER.error(excepMsg);
+            throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         }
         if (tableDoList == null) {
-            return new Message(CommonConstant.FAILED_CODE, "初始化备份过程中查询表结构信息为空！");
+            String excepMsg = "初始化备份过程中查询表结构信息为空！";
+            LOGGER.error(excepMsg);
+            throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         }
         boolean updatePropDBResult = tableDao.updateDBProperties(tableDoList);
         if (updatePropDBResult) {
             LOGGER.info("初始化备份表结构信息成功！");
-            return new Message(CommonConstant.SUCCESS_CODE);
+        } else {
+            LOGGER.error("初始化备份表结构信息失败！");
         }
-        return new Message(CommonConstant.FAILED_CODE, "初始化备份表结构信息失败！");
     }
 
-    private Message initFileBackupData() {
+    private void initFileBackupData() {
         Long time = System.currentTimeMillis();
         boolean updatePropFileResult = fileDao.updateFileTimeProperty(time);
         if (updatePropFileResult) {
-            LOGGER.info("初始化备份文件时间信息成功");
-            return new Message(CommonConstant.SUCCESS_CODE);
+            LOGGER.info("初始化备份文件时间信息成功!");
+        } else {
+            LOGGER.error("初始化备份文件时间信息失败!");
         }
-        return new Message(CommonConstant.FAILED_CODE, "初始化备份文件时间信息失败！");
+    }
+    private void initCountBackupData() {
+        if (countDao.getCount() != 0) {
+            return;
+        }
+        countDao.updateCount(0);
     }
 }

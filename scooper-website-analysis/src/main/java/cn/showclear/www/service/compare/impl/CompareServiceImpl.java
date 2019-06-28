@@ -2,6 +2,7 @@ package cn.showclear.www.service.compare.impl;
 
 import cn.com.scooper.common.exception.BusinessException;
 import cn.showclear.www.common.constant.CommonConstant;
+import cn.showclear.www.dao.base.count.CountDao;
 import cn.showclear.www.dao.base.data.DataDao;
 import cn.showclear.www.dao.base.file.FileDao;
 import cn.showclear.www.dao.base.table.TableDao;
@@ -17,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -54,8 +54,15 @@ public class CompareServiceImpl implements CompareService {
     @Autowired
     private GenerateFileService generateFileService;
 
+    @Autowired
+    private CountDao countDao;
+
     private StringBuilder updateSQL = new StringBuilder();
 
+    /**
+     * 获取导出路径
+     * @return
+     */
     @Override
     public String getGeneratePath() throws BusinessException {
         Properties properties = null;
@@ -66,7 +73,12 @@ public class CompareServiceImpl implements CompareService {
             LOGGER.error(excepMsg);
             throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         }
-        String generatePath = properties.getProperty("generate.file.path");
+        String generatePath = "";
+        if (isLinux()) {
+            generatePath = properties.getProperty("linux.generate.file.path");
+        } else {
+            generatePath = properties.getProperty("windows.generate.file.path");
+        }
         if (StringUtils.isEmpty(generatePath)) {
             String excepMsg = "没有配置导出路径！";
             LOGGER.error(excepMsg);
@@ -76,11 +88,22 @@ public class CompareServiceImpl implements CompareService {
     }
 
     /**
+     * 判断是否是linux系统
+     *
+     * @return true：是linux系统|false：不是linux系统
+     */
+    protected boolean isLinux() {
+        return System.getProperty("os.name").toLowerCase().contains("linux");
+    }
+
+    /**
      * 比较数据库信息
      * @return
      */
     @Override
     public String compareDBInfo(String generatePath) throws BusinessException {
+        //更新计数
+        countDao.updateCount(countDao.getCount() + 1);
         String sql = "";
         this.compareTableInfo();
         sql = updateSQL.toString();
@@ -129,7 +152,12 @@ public class CompareServiceImpl implements CompareService {
             LOGGER.error(excepMsg);
             throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         }
-        String scanningPath = configProp.getProperty("scanning.file.path");
+        String scanningPath = "";
+        if (isLinux()) {
+            scanningPath = configProp.getProperty("linux.scanning.file.path");
+        } else {
+            scanningPath = configProp.getProperty("windows.scanning.file.path");
+        }
         if (StringUtils.isEmpty(scanningPath)) {
             String excepMsg = "没有读取到需要扫描的文件路径信息！";
             LOGGER.error(excepMsg);
