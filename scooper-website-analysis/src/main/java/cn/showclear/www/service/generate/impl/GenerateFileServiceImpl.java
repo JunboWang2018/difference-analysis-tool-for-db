@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -54,7 +55,7 @@ public class GenerateFileServiceImpl implements GenerateFileService {
     @Override
     public String createFolder(String path) throws IOException {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        String targetPathStr = path + "\\" + CommonConstant.PARENT_FILE_NAME_START + "_" + df.format(new Date());
+        String targetPathStr = path + File.separator + CommonConstant.PARENT_FILE_NAME_START + "_" + df.format(new Date());
         Path targetPath = Paths.get(targetPathStr);
         if (Files.notExists(targetPath)) {
             targetPath = Files.createDirectories(targetPath);
@@ -72,7 +73,7 @@ public class GenerateFileServiceImpl implements GenerateFileService {
     private Path createSQLFile(String path) throws IOException {
         int count = countDao.getCount();
         String fileName = CommonConstant.SQL_FILE_NAME_START + "_" + count + "_" + new Date().getTime() + CommonConstant.SQL_FILE_NAME_END;
-        String filePath = path + "\\" + fileName;
+        String filePath = path + File.separator + fileName;
         Path path1 = Paths.get(filePath);
         if (Files.notExists(path1)) {
             path1 = Files.createFile(path1);
@@ -91,7 +92,7 @@ public class GenerateFileServiceImpl implements GenerateFileService {
         int count = countDao.getCount();
         String targetPath = this.createFolder(parentPath);
         String fileName = CommonConstant.ZIP_FILE_NAME_START + "_" + count + "_" + new Date().getTime() + CommonConstant.ZIP_FILE_NAME_END;
-        String filePath = targetPath + "\\" + fileName;
+        String filePath = targetPath + File.separator + fileName;
         return filePath;
     }
 }

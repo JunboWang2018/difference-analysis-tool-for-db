@@ -116,9 +116,9 @@ public class HistoryServiceImpl implements HistoryService {
                 historyQo.setDate(df.format(new Date(Long.parseLong(strs[2]))));
             }
             historyQo.setFileName(fileName);
-            if (path.contains("\\")) {
-                String path1 = path.substring(0, path.lastIndexOf("\\"));
-                path1 = path1.replaceAll("\\\\", "\\\\\\\\");
+            if (path.contains(File.separator)) {
+                String path1 = path.substring(0, path.lastIndexOf(File.separator));
+              /*  path1 = path1.replaceAll("\\\\", "\\\\\\\\");*/
                 historyQo.setPath(path1);
             }
             histories.add(historyQo);

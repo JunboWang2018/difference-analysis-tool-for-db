@@ -97,7 +97,6 @@ $(document).ready(function(){
 });
 
 function download(path) {
-	path = reduceSegmenter(path);
 	var downloadForm = $("<form method='post' style='display: none'>");
 	var url = getProjectName() + "/data/index/download";
 	downloadForm.attr("action", url);
@@ -121,37 +120,26 @@ function fullHistory(data) {
 		historyHtml += "<td style='text-align: center;'>" + (i + 1) + "</td>";
 		if (list[i].zip != undefined) {
 			historyHtml += "<td style='text-align: center;'>" + list[i].zip.date + "</td>";
-			//将路径中所有\\替换为\
-			var path = reduceSegmenter(list[i].zip.path);
-			historyHtml += "<td style='text-align: center; '>" + path + "</td>";
+			historyHtml += "<td style='text-align: center; '>" + list[i].zip.path + "</td>";
 
 		} else {
 			historyHtml += "<td style='text-align: center;'>" + list[i].sql.date + "</td>";
-			//将路径中所有\\替换为\
-			var path = reduceSegmenter(list[i].sql.path);
-			historyHtml += "<td style='text-align: center; '>" + path + "</td>";
+			historyHtml += "<td style='text-align: center; '>" + list[i].sql.path + "</td>";
 		}
 		historyHtml += "<td style='text-align: center; '>";
 		if (list[i].zip != undefined) {
-            var filePath = list[i].zip.path + "\\\\" +list[i].zip.fileName;
+            var filePath = list[i].zip.path + "/" +list[i].zip.fileName;
 			historyHtml += "<button class='btn btn-default' style='margin-right: 5px' type='button' onclick=\"download('" + filePath + "')\">资源下载</button>";
 
 		}
 		if (list[i].sql != undefined) {
-		    var filePath = list[i].sql.path + "\\\\" +list[i].sql.fileName;
+		    var filePath = list[i].sql.path + "/" +list[i].sql.fileName;
 			historyHtml += "<button class='btn btn-default' type='button' onclick=\"download('" + filePath + "')\">SQL下载</button>";
 		}
 		historyHtml += "</td>";
 		historyHtml += "</tr>";
 	}
 	return historyHtml;
-}
-
-function reduceSegmenter(path) {
-	while (path.search(/\\\\/) != -1) {
-		path = path.replace("\\\\", "\\");
-	}
-	return path;
 }
 
 //判断字符是否有效的方法

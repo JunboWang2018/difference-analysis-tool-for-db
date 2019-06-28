@@ -271,13 +271,13 @@ public class CompareServiceImpl implements CompareService {
             if(files == null || files.length == 0){
                 if (scanningFile.lastModified() > lastUpdateTime) {
                     // 新增的空文件夹处理
-                    zipOut.putNextEntry(new ZipEntry(scanningFile.getName() + "\\"));
+                    zipOut.putNextEntry(new ZipEntry(scanningFile.getName() + File.separator));
                     // 没有文件，不需要文件的copy
                     zipOut.closeEntry();
                 }
             }
             for (File file : files) {
-                this.compareFile(file, zipOut, name + "\\" + file.getName(), lastUpdateTime);
+                this.compareFile(file, zipOut, name + File.separator + file.getName(), lastUpdateTime);
             }
         } else {
             //处理文件
