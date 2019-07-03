@@ -7,7 +7,6 @@ import cn.showclear.www.dao.base.count.CountDao;
 import cn.showclear.www.dao.base.file.FileDao;
 import cn.showclear.www.dao.base.table.TableDao;
 import cn.showclear.www.pojo.base.TableDo;
-import cn.showclear.www.pojo.common.Message;
 import cn.showclear.www.service.init.InitService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +40,7 @@ public class InitServiceImpl implements InitService {
     @Autowired
     private CountDao countDao;
 
+
     /**
      * 初始化工具，包含数据库备份和文件时间备份
      * @return
@@ -64,6 +64,7 @@ public class InitServiceImpl implements InitService {
         } else {
             LOGGER.info("初始化备份信息成功！");
         }*/
+       LOGGER.info("初始化完成！");
     }
 
 
@@ -99,12 +100,21 @@ public class InitServiceImpl implements InitService {
     }
 
     private void initFileBackupData() {
-        Long time = System.currentTimeMillis();
-        boolean updatePropFileResult = fileDao.updateFileTimeProperty(time);
-        if (updatePropFileResult) {
-            LOGGER.info("初始化备份文件时间信息成功!");
-        } else {
-            LOGGER.error("初始化备份文件时间信息失败!");
+        Long fileTime = 0L;
+        try {
+            fileTime = fileDao.getFileTimeProperty();
+        } catch (IOException e) {
+            LOGGER.error("获取备份文件时间信息失败！", e);
+        }
+        //没有设置时间信息，设置!
+        if (fileTime == 0) {
+            Long time = System.currentTimeMillis();
+            boolean updatePropFileResult = fileDao.updateFileTimeProperty(time);
+            if (updatePropFileResult) {
+                LOGGER.info("初始化备份文件时间信息成功!");
+            } else {
+                LOGGER.error("初始化备份文件时间信息失败!");
+            }
         }
     }
     private void initCountBackupData() {

@@ -1,9 +1,18 @@
 package cn.showclear.utils;
 
+import cn.com.scooper.common.exception.BusinessException;
+import cn.showclear.www.common.constant.CommonConstant;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.PropertiesFactoryBean;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 /**
@@ -13,8 +22,45 @@ import java.util.Properties;
  */
 public class FileConnectUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(FileConnectUtil.class);
-    private static File file = new File(System.getProperties().getProperty("user.conf") + "/backup.properties");
-/*    private static File filePath = new File("F:/backup");*/
+    private static File file = null;
+
+    static {
+        Properties properties = new Properties();
+        InputStream fileIn = null;
+        try {
+            fileIn = new FileInputStream(System.getProperty("user.conf") + File.separator + "config.properties");
+            properties.load(fileIn);
+        } catch (FileNotFoundException e) {
+            String excepMsg = "没有找到配置文件！";
+            LOGGER.error(excepMsg, e);
+            throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
+        } catch (IOException e) {
+            String excepMsg = "读取配置文件失败！";
+            LOGGER.error(excepMsg, e);
+            throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
+        }
+        String generatePath = "";
+        if (isLinux()) {
+            generatePath = properties.getProperty("linux.generate.file.path");
+        } else {
+            generatePath = properties.getProperty("windows.generate.file.path");
+        }
+
+        if (StringUtils.isEmpty(generatePath)) {
+            LOGGER.error("未配置导出文件目录！");
+        }
+        Path targetPath = Paths.get(generatePath);
+        if (Files.notExists(targetPath)) {
+            try {
+                Files.createDirectories(targetPath);
+            } catch (IOException e) {
+                String excepMsg = "导出文件目录失败！";
+                LOGGER.error(excepMsg, e);
+                throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
+            }
+        }
+        file = new File(generatePath + File.separator + "backup.properties");
+    }
 
     /**
      * 初始化时间存储文件
@@ -22,14 +68,11 @@ public class FileConnectUtil {
      */
     public static boolean initFile() {
         boolean initResult = true;
-       /* if (!filePath.exists()) {
-            initResult = filePath.mkdir();
-        }*/
         if (!file.exists()) {
             try {
                 initResult = file.createNewFile();
             } catch (IOException e) {
-                LOGGER.error("创建时间备份文件失败！");
+                LOGGER.error("创建时间备份文件失败！", e);
                 initResult = false;
             }
         }
@@ -71,5 +114,15 @@ public class FileConnectUtil {
         properties.load(fileIn);
         return properties;
     }
+
+    /**
+     * 判断是否是linux系统
+     *
+     * @return true：是linux系统|false：不是linux系统
+     */
+    private static boolean isLinux() {
+        return System.getProperty("os.name").toLowerCase().contains("linux");
+    }
+
 
 }

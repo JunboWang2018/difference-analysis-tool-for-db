@@ -121,7 +121,6 @@ function fullHistory(data) {
 		if (list[i].zip != undefined) {
 			historyHtml += "<td style='text-align: center;'>" + list[i].zip.date + "</td>";
 			historyHtml += "<td style='text-align: center; '>" + list[i].zip.path + "</td>";
-
 		} else {
 			historyHtml += "<td style='text-align: center;'>" + list[i].sql.date + "</td>";
 			historyHtml += "<td style='text-align: center; '>" + list[i].sql.path + "</td>";

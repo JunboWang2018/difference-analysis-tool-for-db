@@ -23,6 +23,7 @@ import java.util.Properties;
 @Repository
 public class CountDaoImpl implements CountDao {
     private static final Logger LOGGER = LoggerFactory.getLogger(CountDaoImpl.class);
+
     /**
      * 添加或修改计数
      * @param count
@@ -40,7 +41,7 @@ public class CountDaoImpl implements CountDao {
             fileOut = FileConnectUtil.getOutputStream();
         } catch (IOException e) {
             String excepMsg = "加载备份文件失败！";
-            LOGGER.error(excepMsg);
+            LOGGER.error(excepMsg, e);
             throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         }
         properties.setProperty(key, String.valueOf(count));
@@ -48,14 +49,24 @@ public class CountDaoImpl implements CountDao {
             properties.store(fileOut, "backup info");
         } catch (IOException e) {
             String excepMsg = "property写入输出流失败！";
-            LOGGER.error(excepMsg);
+            LOGGER.error(excepMsg, e);
             throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
+        } finally {
+            try {
+                fileIn.close();
+                fileOut.close();
+            } catch (IOException e) {
+                String excepMsg = "文件输入输出流关闭失败！";
+                LOGGER.error(excepMsg, e);
+                throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
+            }
         }
         if (count == 0) {
             LOGGER.info("初始化计数信息成功！");
         } else {
             LOGGER.info("更新计数信息成功！");
         }
+
 
     }
 
@@ -73,11 +84,11 @@ public class CountDaoImpl implements CountDao {
             properties.load(fileIn);
         } catch (FileNotFoundException e) {
             String excepMsg = "未找到备份文件！";
-            LOGGER.error(excepMsg);
+            LOGGER.error(excepMsg, e);
             throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         } catch (IOException e) {
             String excepMsg = "读取property失败！";
-            LOGGER.error(excepMsg);
+            LOGGER.error(excepMsg, e);
             throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         }
         String countStr = properties.getProperty("export.count");

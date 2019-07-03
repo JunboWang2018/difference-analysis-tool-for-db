@@ -7,6 +7,7 @@ import cn.showclear.www.service.generate.GenerateSQLService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -45,6 +46,8 @@ public class GenerateSQLServiceImpl implements GenerateSQLService {
             addColSQL.append(" COMMENT '" + columnDo.getColumnComment() + "'");
         }
         addColSQL.append(";");
+        //添加换行
+        addColSQL.append("\r\n");
         return addColSQL.toString();
     }
 
@@ -75,7 +78,7 @@ public class GenerateSQLServiceImpl implements GenerateSQLService {
     public String generateAddRecordSQL(String tableName, List<ColumnDo> columns, String[] data) {
         StringBuilder sbSQL = new StringBuilder();
         //按ordinal position排序，使之与data数组数据顺序对应
-        columns.sort(new Comparator<ColumnDo>() {
+        Collections.sort(columns, new Comparator<ColumnDo>() {
             @Override
             public int compare(ColumnDo o1, ColumnDo o2) {
                 return o1.getOrdinalPosition().intValue() - o1.getOrdinalPosition().intValue();
@@ -120,6 +123,8 @@ public class GenerateSQLServiceImpl implements GenerateSQLService {
 
         }
         sbSQL.append(");");
+        //添加换行
+        sbSQL.append("\r\n");
         return sbSQL.toString();
     }
 
@@ -171,6 +176,8 @@ public class GenerateSQLServiceImpl implements GenerateSQLService {
 
         }
         sbSQL.append(" WHERE ").append(priColName).append(" = ").append(data[priColIndex]).append(";");
+        //添加换行
+        sbSQL.append("\r\n");
         return sbSQL.toString();
     }
 
@@ -200,6 +207,8 @@ public class GenerateSQLServiceImpl implements GenerateSQLService {
             throw new BusinessException(CommonConstant.FAILED_CODE, "没有找到" + tableName + "表的主键！");
         }
         sbSQL.append("DELETE FROM ").append(tableName).append(" WHERE ").append(priColName).append(" = ").append(data[priColIndex]).append(";");
+        //添加换行
+        sbSQL.append("\r\n");
         return sbSQL.toString();
     }
 

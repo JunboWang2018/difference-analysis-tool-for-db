@@ -59,4 +59,5 @@
 
 	<!-- JDBC连接工具类 -->
 	<bean id="dbConnectUtil" class="cn.showclear.utils.DBConnectUtil"></bean>
+
 </beans>

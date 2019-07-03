@@ -1,10 +1,11 @@
 package cn.showclear.www.dao.base.file.impl;
 
-import cn.com.scooper.common.exception.BusinessException;
 import cn.showclear.utils.FileConnectUtil;
 import cn.showclear.www.dao.base.file.FileDao;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
@@ -40,21 +41,21 @@ public class FileDaoImpl implements FileDao {
             properties.load(fileIn);
             fileOut = FileConnectUtil.getOutputStream();
         } catch (IOException e) {
-            LOGGER.error("加载配置文件失败！");
+            LOGGER.error("加载配置文件失败！", e);
             updateResult = false;
         }
         properties.setProperty(key, value);
         try {
             properties.store(fileOut, "backup info");
         } catch (IOException e) {
-            LOGGER.error("property写入输出流失败！");
+            LOGGER.error("property写入输出流失败！", e);
             updateResult = false;
         } finally {
             try {
                 fileIn.close();
                 fileOut.close();
             } catch (IOException e) {
-                LOGGER.error("流关闭失败！");
+                LOGGER.error("流关闭失败！", e);
             }
         }
         return updateResult;
@@ -65,6 +66,10 @@ public class FileDaoImpl implements FileDao {
         Properties properties = new Properties();
         InputStream fileIn = FileConnectUtil.getInputStream();
         properties.load(fileIn);
-        return Long.parseLong(properties.getProperty("file.update.time"));
+        String time = properties.getProperty("file.update.time");
+        if (StringUtils.isEmpty(time)) {
+            return 0L;
+        }
+        return Long.parseLong(time);
     }
 }

@@ -129,7 +129,7 @@ public class TableDaoImpl implements TableDao {
             properties.load(fileIn);
             fileOut = FileConnectUtil.getOutputStream();
         } catch (IOException e) {
-            LOGGER.error("加载配置文件失败！");
+            LOGGER.error("加载配置文件失败！", e);
             updateResult = false;
         }
         for (int i = 0; i < tables.size(); i++) {
@@ -138,14 +138,14 @@ public class TableDaoImpl implements TableDao {
         try {
             properties.store(fileOut, "");
         } catch (IOException e) {
-            LOGGER.error("property写入输出流失败！");
+            LOGGER.error("property写入输出流失败！", e);
             updateResult = false;
         } finally {
             try {
                 fileIn.close();
                 fileOut.close();
             } catch (IOException e) {
-                LOGGER.error("流关闭失败！");
+                LOGGER.error("流关闭失败！", e);
                 updateResult = false;
             }
         }
@@ -175,21 +175,21 @@ public class TableDaoImpl implements TableDao {
             properties.load(fileIn);
             fileOut = FileConnectUtil.getOutputStream();
         } catch (IOException e) {
-            LOGGER.error("加载配置文件失败！");
+            LOGGER.error("加载配置文件失败！", e);
             updateResult = false;
         }
         try {
             setProperties(table, properties);
             properties.store(fileOut, "");
         } catch (IOException e) {
-            LOGGER.error("property写入输出流失败！");
+            LOGGER.error("property写入输出流失败！", e);
             updateResult = false;
         } finally {
             try {
                 fileIn.close();
                 fileOut.close();
             } catch (IOException e) {
-                LOGGER.error("流关闭失败！");
+                LOGGER.error("流关闭失败！", e);
             }
         }
         return updateResult;

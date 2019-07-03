@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,7 +37,8 @@ public class GenerateFileServiceImpl implements GenerateFileService {
     public String generateSQLFile(String path, String sql) throws IOException {
         String targetPath = this.createFolder(path);
         Path filePath = this.createSQLFile(targetPath);
-        BufferedWriter bufferedWriter = Files.newBufferedWriter(filePath, Charset.defaultCharset(), StandardOpenOption.WRITE);
+        String filePathStr = filePath.toString();
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePathStr));
         bufferedWriter.write(sql, 0, sql.length());
         bufferedWriter.flush();
         bufferedWriter.close();
@@ -72,7 +72,7 @@ public class GenerateFileServiceImpl implements GenerateFileService {
      */
     private Path createSQLFile(String path) throws IOException {
         int count = countDao.getCount();
-        String fileName = CommonConstant.SQL_FILE_NAME_START + "_" + count + "_" + new Date().getTime() + CommonConstant.SQL_FILE_NAME_END;
+        String fileName = CommonConstant.SQL_FILE_NAME_START + "_" + count + "_" + System.currentTimeMillis() + CommonConstant.SQL_FILE_NAME_END;
         String filePath = path + File.separator + fileName;
         Path path1 = Paths.get(filePath);
         if (Files.notExists(path1)) {
@@ -91,7 +91,7 @@ public class GenerateFileServiceImpl implements GenerateFileService {
     public String generateZipFilePath(String parentPath) throws IOException {
         int count = countDao.getCount();
         String targetPath = this.createFolder(parentPath);
-        String fileName = CommonConstant.ZIP_FILE_NAME_START + "_" + count + "_" + new Date().getTime() + CommonConstant.ZIP_FILE_NAME_END;
+        String fileName = CommonConstant.ZIP_FILE_NAME_START + "_" + count + "_" + System.currentTimeMillis() + CommonConstant.ZIP_FILE_NAME_END;
         String filePath = targetPath + File.separator + fileName;
         return filePath;
     }

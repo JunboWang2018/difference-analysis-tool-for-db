@@ -48,7 +48,7 @@ public class HistoryServiceImpl implements HistoryService {
             properties = propFactory.getObject();
         } catch (IOException e) {
             String excepMsg = "读取导出路径配置失败！";
-            LOGGER.error(excepMsg);
+            LOGGER.error(excepMsg, e);
             throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         }
         String exportPath = "";
@@ -101,27 +101,31 @@ public class HistoryServiceImpl implements HistoryService {
                 this.arrangeHistory(file1.getPath(), histories);
             }
         } else {
-            //添加文件信息
+
             String fileName = file.getName();
-            String[] strs = fileName.split("_");
-            if (strs.length == 3) {
-                int count = Integer.parseInt(strs[1]);
-                historyQo.setId(count);
-                if (CommonConstant.SQL_FILE_NAME_START.equals(strs[0])) {
-                    strs[2] = strs[2].replaceAll(CommonConstant.SQL_FILE_NAME_END, "");
+            if ((fileName.startsWith(CommonConstant.SQL_FILE_NAME_START) && fileName.endsWith(CommonConstant.SQL_FILE_NAME_END))
+                    || (fileName.startsWith(CommonConstant.ZIP_FILE_NAME_START) && fileName.endsWith(CommonConstant.ZIP_FILE_NAME_END))){
+                //添加文件信息
+                String[] strs = fileName.split("_");
+                if (strs.length == 3) {
+                    int count = Integer.parseInt(strs[1]);
+                    historyQo.setId(count);
+                    if (CommonConstant.SQL_FILE_NAME_START.equals(strs[0])) {
+                        strs[2] = strs[2].replaceAll(CommonConstant.SQL_FILE_NAME_END, "");
+                    }
+                    if (CommonConstant.ZIP_FILE_NAME_START.equals(strs[0])) {
+                        strs[2] = strs[2].replaceAll(CommonConstant.ZIP_FILE_NAME_END, "");
+                    }
+                    historyQo.setDate(df.format(new Date(Long.parseLong(strs[2]))));
                 }
-                if (CommonConstant.ZIP_FILE_NAME_START.equals(strs[0])) {
-                    strs[2] = strs[2].replaceAll(CommonConstant.ZIP_FILE_NAME_END, "");
+                historyQo.setFileName(fileName);
+                if (path.contains(File.separator)) {
+                    String path1 = path.substring(0, path.lastIndexOf(File.separator));
+                    path1 = path1.replaceAll("\\\\", "/");
+                    historyQo.setPath(path1);
                 }
-                historyQo.setDate(df.format(new Date(Long.parseLong(strs[2]))));
+                histories.add(historyQo);
             }
-            historyQo.setFileName(fileName);
-            if (path.contains(File.separator)) {
-                String path1 = path.substring(0, path.lastIndexOf(File.separator));
-              /*  path1 = path1.replaceAll("\\\\", "\\\\\\\\");*/
-                historyQo.setPath(path1);
-            }
-            histories.add(historyQo);
         }
     }
 

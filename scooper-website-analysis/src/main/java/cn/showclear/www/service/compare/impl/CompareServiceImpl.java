@@ -70,7 +70,7 @@ public class CompareServiceImpl implements CompareService {
             properties = propFactory.getObject();
         } catch (IOException e) {
             String excepMsg = "读取导出路径配置失败！";
-            LOGGER.error(excepMsg);
+            LOGGER.error(excepMsg, e);
             throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         }
         String generatePath = "";
@@ -119,7 +119,7 @@ public class CompareServiceImpl implements CompareService {
                 filePath = generateFileService.generateSQLFile(generatePath, sql);
             } catch (IOException e) {
                 String excepMsg = "生成SQL文件失败！";
-                LOGGER.error(excepMsg);
+                LOGGER.error(excepMsg, e);
                 throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
             }
             updateSQL.delete(0, updateSQL.length());
@@ -149,7 +149,7 @@ public class CompareServiceImpl implements CompareService {
             configProp = propFactory.getObject();
         } catch (IOException e) {
             String excepMsg = "读取配置文件信息失败！";
-            LOGGER.error(excepMsg);
+            LOGGER.error(excepMsg, e);
             throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         }
         String scanningPath = "";
@@ -175,7 +175,7 @@ public class CompareServiceImpl implements CompareService {
             lastUpdateTime = fileDao.getFileTimeProperty();
         } catch (IOException e) {
             String excepMsg = "读取备份文件信息失败！";
-            LOGGER.error(excepMsg);
+            LOGGER.error(excepMsg, e);
             throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         }
         //检查更新
@@ -188,11 +188,11 @@ public class CompareServiceImpl implements CompareService {
                 outputStream = new FileOutputStream(zipPath);
             } catch (FileNotFoundException e) {
                 String excepMsg = "生成文件的路径不存在！";
-                LOGGER.error(excepMsg);
+                LOGGER.error(excepMsg, e);
                 throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
             } catch (IOException e) {
                 String excepMsg = "生成文件的路径创建失败！";
-                LOGGER.error(excepMsg);
+                LOGGER.error(excepMsg, e);
                 throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
             }
             ZipOutputStream zipOut = new ZipOutputStream(outputStream);
@@ -200,7 +200,7 @@ public class CompareServiceImpl implements CompareService {
                 this.compareFile(scanningFile, zipOut, scanningFile.getName(), lastUpdateTime);
             } catch (IOException e) {
                 String excepMsg = "复制新增的文件时读取异常！";
-                LOGGER.error(excepMsg);
+                LOGGER.error(excepMsg, e);
                 throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
             } finally {
                 if(zipOut != null){
@@ -214,7 +214,7 @@ public class CompareServiceImpl implements CompareService {
             //压缩文件创建成功则更新备份文件时间信息
             //检查文件是否存在
             if (new File(zipPath).exists()) {
-                fileDao.updateFileTimeProperty(new Date().getTime());
+                fileDao.updateFileTimeProperty(System.currentTimeMillis());
             }
             return zipPath;
         }
@@ -314,7 +314,7 @@ public class CompareServiceImpl implements CompareService {
             properties = propFactory.getObject();
         } catch (IOException e) {
             String excepMsg = "读取数据库配置信息失败！";
-            LOGGER.error(excepMsg);
+            LOGGER.error(excepMsg, e);
             throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         }
         String mainDBName = properties.getProperty("mainDB.dbname");
@@ -325,7 +325,7 @@ public class CompareServiceImpl implements CompareService {
 //            List<TableDo> backupFileDBTables = tableDao.getBackupFileTableInfo();
         } catch (SQLException e) {
             String excepMsg = "读取数据库数据失败！";
-            LOGGER.error(excepMsg);
+            LOGGER.error(excepMsg, e);
             throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         }
         //对比数据信息
@@ -355,11 +355,11 @@ public class CompareServiceImpl implements CompareService {
             updateSQL.append(this.compareDataInfo(modifiedTables));
         } catch (IOException e) {
             String excepMsg = "读取数据库配置信息失败！";
-            LOGGER.error(excepMsg);
+            LOGGER.error(excepMsg, e);
             throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         } catch (SQLException e) {
             String excepMsg = "读取数据库数据失败！";
-            LOGGER.error(excepMsg);
+            LOGGER.error(excepMsg, e);
             throw new BusinessException(CommonConstant.FAILED_CODE, excepMsg);
         }
 
