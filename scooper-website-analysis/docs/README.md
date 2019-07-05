@@ -3,7 +3,7 @@
 
 ### 安装/升级说明
 #### 全新安装
-1. 将发布包中的 `/config/scooper-website-analysis` 目录中的文件放入 `/icooper/config/` 目录。
+1. 将发布包中的 `/config/scooper-website-analysis` 文件夹放入 `/icooper/config/` 目录。
 2. 在config.properties文件中根据不同系统环境配置资源文件扫描路径和导出文件生成路径，如在linux环境下需要配置linux.scanning.file.path和linux.generate.file.path两项。
 3. 在db.properties文件中配置需要分析的数据库，mainDB为测试修改的数据库，supDB为辅助备份数据库，isDB为 MySQL 自带的信息数据库，三个数据库必须为同一连接（host一致），具体配置步骤见下方用户配置。 
 4. 将发布包中的 `scooper-website-analysis.war` 放入 `{tomcat}/webapps/` 目录。
