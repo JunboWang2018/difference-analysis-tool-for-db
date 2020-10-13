@@ -20,7 +20,7 @@
 		
 		<scooper.common.version>1.0.24</scooper.common.version>
 		
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 	</properties>
 
 	<dependencies>
